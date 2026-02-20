@@ -6,10 +6,10 @@ import { Menu, X } from "lucide-react";
 import { useScrollSection } from "@/hooks/useScrollSection";
 
 const NAV_ITEMS = [
+  { id: "ai-workflow", label: "AI Dev" },
   { id: "about", label: "About" },
   { id: "journey", label: "Journey" },
   { id: "capabilities", label: "Capabilities" },
-  { id: "ai-workflow", label: "AI Dev" },
   { id: "skills", label: "Skills" },
   { id: "projects", label: "Projects" },
   { id: "contact", label: "Contact" },

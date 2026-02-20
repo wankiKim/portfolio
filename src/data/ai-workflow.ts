@@ -11,6 +11,10 @@ export interface WorkflowCase {
   solo: boolean;
   techStack: string[];
   description: string;
+  highlight?: boolean;
+  liveUrl?: string;
+  blogUrl?: string;
+  metrics?: string[];
 }
 
 export const workflowStats: WorkflowStat[] = [
@@ -38,6 +42,23 @@ export const workflowStats: WorkflowStat[] = [
 
 export const workflowCases: WorkflowCase[] = [
   {
+    title: "암호화폐 거래소 — Claude Code로 처음부터 구축",
+    scale: "풀스택 거래소 플랫폼",
+    duration: "Solo",
+    solo: true,
+    highlight: true,
+    liveUrl: "https://exchange.agentmichael.me",
+    blogUrl: "https://michaelkim80.tistory.com/5",
+    techStack: ["Next.js", "Node.js", "WebSocket", "Terraform", "Kubernetes", "AWS"],
+    metrics: [
+      "12개 트레이딩 봇 동시 운영",
+      "초당 100+ 주문 처리, 딜레이 없음",
+      "2~3초마다 체결, 10~15초 호가 갱신",
+    ],
+    description:
+      "5년간의 거래소 개발 경험을 바탕으로, Claude Code와 함께 암호화폐 거래소를 처음부터 구축. 실시간 호가·체결 엔진, 12개 봇 동시 운영, 초당 100건 이상의 주문을 딜레이 없이 처리. Terraform + Kubernetes로 AWS 인프라 자동화까지 1인 완성.",
+  },
+  {
     title: "CS 응대 AI Agent 시스템",
     scale: "멀티채널 자동화 플랫폼",
     duration: "2주",
@@ -63,15 +84,6 @@ export const workflowCases: WorkflowCase[] = [
     techStack: ["Next.js 15", "Terraform", "AWS", "GitHub Actions"],
     description:
       "이 사이트 자체가 증거입니다. Next.js 15 앱 개발 → Terraform 인프라(S3 + CloudFront + Route53 + ACM) → GitHub Actions CI/CD → 커스텀 도메인 연결까지 하루 만에 완성.",
-  },
-  {
-    title: "해외 암호화폐 거래소 2.0",
-    scale: "대규모 리아키텍처링",
-    duration: "4개월",
-    solo: false,
-    techStack: ["Spring Cloud", "Kafka", "Redis", "MongoDB", "MySQL"],
-    description:
-      "우즈베키스탄 거래소 전체 리팩토링 — DB 재설계, MSA 전환, CI/CD 구축. 핵심 아키텍처와 기술 의사결정을 주도하며 Claude Code로 반복 작업을 극적으로 압축.",
   },
 ];
 

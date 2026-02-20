@@ -4,10 +4,10 @@ import { useState, useEffect } from "react";
 
 const SECTIONS = [
   "hero",
+  "ai-workflow",
   "about",
   "journey",
   "capabilities",
-  "ai-workflow",
   "skills",
   "projects",
   "contact",

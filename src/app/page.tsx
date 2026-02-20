@@ -15,10 +15,10 @@ export default function Home() {
       <Header />
       <main>
         <HeroSection />
+        <AIWorkflowSection />
         <AboutSection />
         <JourneySection />
         <CapabilitiesSection />
-        <AIWorkflowSection />
         <SkillsSection />
         <ProjectsSection />
         <ContactSection />

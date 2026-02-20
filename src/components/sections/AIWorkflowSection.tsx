@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Bot, Zap, Timer, Shield, ArrowRight, Lock, Github } from "lucide-react";
+import { Bot, Zap, Timer, Shield, ArrowRight, ExternalLink, BookOpen, Activity } from "lucide-react";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import {
   workflowStats,
@@ -102,12 +102,23 @@ export default function AIWorkflowSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
-              className="group rounded-2xl border border-card-border bg-card p-5 transition-all hover:border-accent/30 hover:shadow-lg hover:shadow-accent/5"
+              className={`group rounded-2xl border p-5 transition-all hover:shadow-lg ${
+                c.highlight
+                  ? "col-span-full border-accent/40 bg-gradient-to-br from-accent/5 via-card to-card hover:border-accent/60 hover:shadow-accent/10"
+                  : "border-card-border bg-card hover:border-accent/30 hover:shadow-accent/5"
+              }`}
             >
               <div className="mb-3 flex items-center justify-between">
-                <h4 className="text-sm font-semibold text-foreground">
-                  {c.title}
-                </h4>
+                <div className="flex items-center gap-2">
+                  {c.highlight && (
+                    <span className="rounded-md bg-accent/20 px-1.5 py-0.5 text-[10px] font-bold text-accent">
+                      FEATURED
+                    </span>
+                  )}
+                  <h4 className={`font-semibold text-foreground ${c.highlight ? "text-base" : "text-sm"}`}>
+                    {c.title}
+                  </h4>
+                </div>
                 <div className="flex items-center gap-2">
                   {c.solo && (
                     <span className="flex items-center gap-1 rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-medium text-emerald-400">
@@ -127,19 +138,64 @@ export default function AIWorkflowSection() {
                 {c.scale}
               </div>
 
-              <p className="mb-4 text-xs leading-relaxed text-muted">
+              <p className={`mb-4 leading-relaxed text-muted ${c.highlight ? "text-sm" : "text-xs"}`}>
                 {c.description}
               </p>
 
-              <div className="flex flex-wrap gap-1.5">
-                {c.techStack.map((tech) => (
-                  <span
-                    key={tech}
-                    className="rounded-md bg-background px-2 py-0.5 text-[10px] text-muted"
-                  >
-                    {tech}
-                  </span>
-                ))}
+              {/* Performance metrics for highlighted */}
+              {c.metrics && (
+                <div className="mb-4 grid grid-cols-1 gap-2 sm:grid-cols-3">
+                  {c.metrics.map((m) => (
+                    <div
+                      key={m}
+                      className="flex items-center gap-2 rounded-lg bg-background/80 px-3 py-2 text-xs"
+                    >
+                      <Activity size={12} className="shrink-0 text-emerald-400" />
+                      <span className="text-foreground">{m}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              <div className="flex items-center justify-between">
+                <div className="flex flex-wrap gap-1.5">
+                  {c.techStack.map((tech) => (
+                    <span
+                      key={tech}
+                      className="rounded-md bg-background px-2 py-0.5 text-[10px] text-muted"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Links */}
+                {(c.liveUrl || c.blogUrl) && (
+                  <div className="flex shrink-0 items-center gap-2">
+                    {c.liveUrl && (
+                      <a
+                        href={c.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1 rounded-full bg-accent px-3 py-1 text-[10px] font-medium text-white transition-colors hover:bg-accent-dim"
+                      >
+                        <ExternalLink size={10} />
+                        Live Demo
+                      </a>
+                    )}
+                    {c.blogUrl && (
+                      <a
+                        href={c.blogUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1 rounded-full border border-card-border px-3 py-1 text-[10px] font-medium text-muted transition-colors hover:border-accent/50 hover:text-accent"
+                      >
+                        <BookOpen size={10} />
+                        Blog
+                      </a>
+                    )}
+                  </div>
+                )}
               </div>
             </motion.div>
           ))}
