@@ -3,14 +3,20 @@
 import { motion } from "framer-motion";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import SkillBar from "@/components/ui/SkillBar";
-import { skillCategories } from "@/data/skills";
+import { useLang } from "@/context/LanguageContext";
+import { getSkills } from "@/data/skills";
+import { t } from "@/data/i18n";
 
 export default function SkillsSection() {
+  const { locale } = useLang();
+  const skillCategories = getSkills(locale);
+  const ui = t(locale);
+
   return (
     <SectionWrapper id="skills">
       <div className="mb-12">
         <h2 className="mb-2 text-3xl font-bold text-foreground">Skills</h2>
-        <p className="text-muted">기술 스택</p>
+        <p className="text-muted">{ui.skillSub}</p>
       </div>
 
       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">

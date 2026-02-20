@@ -3,12 +3,19 @@
 import { useState } from "react";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import TimelineCard from "@/components/ui/TimelineCard";
-import { careers } from "@/data/career";
-import { profile } from "@/data/profile";
+import { useLang } from "@/context/LanguageContext";
+import { getCareers } from "@/data/career";
+import { getProfile } from "@/data/profile";
+import { t } from "@/data/i18n";
 
 const INITIAL_COUNT = 3;
 
 export default function AboutSection() {
+  const { locale } = useLang();
+  const careers = getCareers(locale);
+  const profile = getProfile(locale);
+  const ui = t(locale);
+
   const [showAll, setShowAll] = useState(false);
   const visibleCareers = showAll ? careers : careers.slice(0, INITIAL_COUNT);
 
@@ -57,7 +64,7 @@ export default function AboutSection() {
         {/* Career timeline */}
         <div>
           <h3 className="mb-6 text-xl font-semibold text-foreground">
-            경력 타임라인
+            {ui.aboutSub}
           </h3>
           <div>
             {visibleCareers.map((career, i) => (
@@ -70,8 +77,8 @@ export default function AboutSection() {
               className="mt-6 rounded-full border border-card-border px-5 py-2 text-sm text-muted transition-colors hover:border-accent/50 hover:text-accent"
             >
               {showAll
-                ? "접기"
-                : `+ ${careers.length - INITIAL_COUNT}개 더보기`}
+                ? ui.aboutFold
+                : ui.aboutMore(careers.length - INITIAL_COUNT)}
             </button>
           )}
         </div>

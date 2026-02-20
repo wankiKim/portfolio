@@ -3,42 +3,48 @@
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Github } from "lucide-react";
 import SectionWrapper from "@/components/ui/SectionWrapper";
-import { profile } from "@/data/profile";
-
-const contacts = [
-  {
-    icon: Mail,
-    label: "Email",
-    value: profile.email,
-    href: `mailto:${profile.email}`,
-  },
-  {
-    icon: Phone,
-    label: "Phone",
-    value: profile.phone,
-    href: `tel:${profile.phone.replace(/-/g, "")}`,
-  },
-  {
-    icon: Github,
-    label: "GitHub",
-    value: `@${profile.github}`,
-    href: `https://github.com/${profile.github}`,
-  },
-  {
-    icon: MapPin,
-    label: "Location",
-    value: profile.location,
-    href: null,
-  },
-];
+import { useLang } from "@/context/LanguageContext";
+import { getProfile } from "@/data/profile";
+import { t } from "@/data/i18n";
 
 export default function ContactSection() {
+  const { locale } = useLang();
+  const profile = getProfile(locale);
+  const ui = t(locale);
+
+  const contacts = [
+    {
+      icon: Mail,
+      label: "Email",
+      value: profile.email,
+      href: `mailto:${profile.email}`,
+    },
+    {
+      icon: Phone,
+      label: "Phone",
+      value: profile.phone,
+      href: `tel:${profile.phone.replace(/-/g, "")}`,
+    },
+    {
+      icon: Github,
+      label: "GitHub",
+      value: `@${profile.github}`,
+      href: `https://github.com/${profile.github}`,
+    },
+    {
+      icon: MapPin,
+      label: "Location",
+      value: profile.location,
+      href: null,
+    },
+  ];
+
   return (
     <SectionWrapper id="contact">
       <div className="mx-auto max-w-2xl text-center">
         <h2 className="mb-2 text-3xl font-bold text-foreground">Contact</h2>
         <p className="mb-12 text-muted">
-          함께 일하거나, 기술에 대해 이야기하고 싶으시다면 연락해주세요.
+          {ui.contactSub}
         </p>
 
         <div className="grid gap-4 sm:grid-cols-2">
@@ -89,8 +95,7 @@ export default function ContactSection() {
           transition={{ delay: 0.6 }}
           className="mt-12 text-sm text-muted"
         >
-          &ldquo;불가능은 없다 — 무언가 훌륭한 일을 시도하다가 실패하기를
-          원합니다.&rdquo;
+          &ldquo;{ui.contactQuote}&rdquo;
         </motion.p>
       </div>
     </SectionWrapper>

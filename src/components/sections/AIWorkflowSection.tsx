@@ -3,13 +3,15 @@
 import { motion } from "framer-motion";
 import { Bot, Zap, Timer, Shield, ArrowRight, ExternalLink, BookOpen, Activity } from "lucide-react";
 import SectionWrapper from "@/components/ui/SectionWrapper";
-import {
-  workflowStats,
-  workflowCases,
-  workflowProcess,
-} from "@/data/ai-workflow";
+import { useLang } from "@/context/LanguageContext";
+import { getAIWorkflow } from "@/data/ai-workflow";
+import { t } from "@/data/i18n";
 
 export default function AIWorkflowSection() {
+  const { locale } = useLang();
+  const { stats, cases, process } = getAIWorkflow(locale);
+  const ui = t(locale);
+
   return (
     <SectionWrapper id="ai-workflow">
       <div className="mb-12">
@@ -23,14 +25,13 @@ export default function AIWorkflowSection() {
           </span>
         </div>
         <p className="max-w-2xl text-muted">
-          18년의 엔터프라이즈 경험 + AI 페어 프로그래밍. 혼자서도 팀 규모의 시스템을
-          설계하고, 팀보다 빠르게 배포합니다.
+          {ui.aiSub}
         </p>
       </div>
 
       {/* Stats */}
       <div className="mb-16 grid grid-cols-2 gap-4 lg:grid-cols-4">
-        {workflowStats.map((stat, i) => (
+        {stats.map((stat, i) => (
           <motion.div
             key={stat.label}
             initial={{ opacity: 0, scale: 0.9 }}
@@ -55,10 +56,10 @@ export default function AIWorkflowSection() {
       {/* Process */}
       <div className="mb-16">
         <h3 className="mb-6 text-lg font-semibold text-foreground">
-          워크플로우
+          {ui.aiWorkflow}
         </h3>
         <div className="grid gap-4 md:grid-cols-3">
-          {workflowProcess.map((p, i) => (
+          {process.map((p, i) => (
             <motion.div
               key={p.step}
               initial={{ opacity: 0, x: -20 }}
@@ -78,7 +79,7 @@ export default function AIWorkflowSection() {
               <p className="text-xs leading-relaxed text-muted">
                 {p.description}
               </p>
-              {i < workflowProcess.length - 1 && (
+              {i < process.length - 1 && (
                 <ArrowRight
                   size={16}
                   className="absolute -right-2.5 top-1/2 hidden -translate-y-1/2 text-accent/40 md:block"
@@ -92,10 +93,10 @@ export default function AIWorkflowSection() {
       {/* Cases */}
       <div>
         <h3 className="mb-6 text-lg font-semibold text-foreground">
-          실전 사례
+          {ui.aiCases}
         </h3>
         <div className="grid gap-4 md:grid-cols-2">
-          {workflowCases.map((c, i) => (
+          {cases.map((c, i) => (
             <motion.div
               key={c.title}
               initial={{ opacity: 0, y: 20 }}
@@ -211,10 +212,10 @@ export default function AIWorkflowSection() {
         className="mt-12 rounded-2xl border border-accent/20 bg-accent/5 p-6 text-center"
       >
         <p className="mb-1 text-sm font-medium text-foreground">
-          &quot;10명이 3개월 걸릴 일을, 1명이 3주 만에 끝낸다&quot;
+          {ui.aiCta1}
         </p>
         <p className="text-xs text-muted">
-          18년 아키텍처 경험 + Claude Code = 엔터프라이즈급 1인 개발의 새로운 기준
+          {ui.aiCta2}
         </p>
       </motion.div>
     </SectionWrapper>

@@ -1,6 +1,7 @@
 import { Career } from "@/types";
+import type { Locale } from "@/context/LanguageContext";
 
-export const careers: Career[] = [
+const careersKo: Career[] = [
   {
     company: "주식회사 휴니크",
     role: "기업부설연구소 연구소장 · 팀장",
@@ -157,3 +158,145 @@ export const careers: Career[] = [
     techStack: ["Java", "Oracle", "MFC", "MSSQL", "UNIX C"],
   },
 ];
+
+const careersEn: Career[] = [
+  {
+    company: "Hunik Inc.",
+    role: "R&D Lab Director · Team Lead",
+    period: "2025.01 ~ Present",
+    duration: "Current",
+    descriptions: [
+      "MailBean solution development",
+      "Unmanned machine with Electron + React + device integration",
+      "MSA-based internal ERP (Auth · Customer · Intranet · Admin)",
+      "AI-powered CS agent (HappyTalk + BizTalk + OpenAI + Notion + Slack)",
+      "App, server & DB design using Claude Code Skills/Plugin",
+    ],
+    techStack: ["Electron", "React", "MSA", "OpenAI", "Claude Code", "Notion API"],
+  },
+  {
+    company: "Kobea Group",
+    role: "Dev Dept. Director",
+    period: "2022.06 ~ 2024.11",
+    duration: "2y 6m",
+    descriptions: [
+      "Uzbekistan crypto exchange development/operations PM",
+      "Full v2.0 rebuild — source refactoring, DB redesign",
+      "CI/CD setup (GitLab, Jenkins), deployment process design",
+      "Uzbekistan bank & gov login integration (Ravnaq Bank / One ID)",
+      "Mastercard & Visa card payment integration",
+      "Spring Cloud MSA (Eureka, Ribbon)",
+      "Kafka async messaging, Prometheus/Grafana monitoring",
+    ],
+    techStack: ["Java", "Node.js", "MySQL", "Kafka", "Redis", "MongoDB", "Spring Cloud"],
+  },
+  {
+    company: "Coredax",
+    role: "Dev Team Lead",
+    period: "2020.03 ~ 2022.03",
+    duration: "2y 1m",
+    descriptions: [
+      "Exchange Frontend (Vue.js) / Backend (Java) development & PM",
+      "REST API development (Java, JWT, Spring, Swagger)",
+      "ISMS-P certification (encryption, deployment process)",
+      "Exchange matching engine maintenance (C/C++)",
+      "Mobile app PM (Flutter)",
+    ],
+    techStack: ["Vue.js", "Java", "Spring", "Flutter", "C/C++"],
+  },
+  {
+    company: "Underfin",
+    role: "Dev Team Lead",
+    period: "2019.08 ~ 2020.01",
+    duration: "6m",
+    descriptions: ["PM & Flutter app + API server development", "Fanzy app development"],
+    techStack: ["Dart", "Flutter", "Java", "Spring"],
+  },
+  {
+    company: "Wion",
+    role: "Senior Developer",
+    period: "2016.11 ~ 2019.08",
+    duration: "2y 10m",
+    descriptions: [
+      "Nursing assessment system PM & development",
+      "Indonesia kiosk server (Telkomsel/FINNET payment integration)",
+      "DOKU (Indonesian PG) server integration R&D",
+      "Oracle DB + AWS infra (Load Balancing, KMS, RDS)",
+      "ERC20 & Stellar token development",
+    ],
+    techStack: ["Java", "Oracle", "AWS", "JPA", "Hibernate", "Blockchain"],
+  },
+  {
+    company: "KiwiSoft",
+    role: "Developer",
+    period: "2015.12 ~ 2016.11",
+    duration: "1y",
+    descriptions: ["Hybrid app development", "Full WEB development, partial API & CMS"],
+    techStack: ["AWS", "MySQL", "Spring MVC", "Java", "KT Cloud"],
+  },
+  {
+    company: "Actived&C",
+    role: "Developer",
+    period: "2013.10 ~ 2015.12",
+    duration: "2y 3m",
+    descriptions: [
+      "MDMS big data analysis site (power sector)",
+      "SmartBuilder website",
+      "Hancom Fintech payment & frontend (PL)",
+    ],
+    techStack: ["Java", "Spring MVC", "JavaScript", "AWS", "LG Payment"],
+  },
+  {
+    company: "SureCom",
+    role: "Developer",
+    period: "2012.12 ~ 2013.05",
+    duration: "6m",
+    descriptions: ["SKT telecom prediction program development"],
+    techStack: ["Java"],
+  },
+  {
+    company: "Nine Wheels",
+    role: "Developer",
+    period: "2011.08 ~ 2012.07",
+    duration: "1y",
+    descriptions: [
+      "Grape Valley (GM tools, stats tools, server features, web)",
+      "Magic Quiz (GM tools, web)",
+    ],
+    techStack: ["Java", "IIS", "SQL"],
+  },
+  {
+    company: "KSign",
+    role: "PKI Division",
+    period: "2010.05 ~ 2011.07",
+    duration: "1y 3m",
+    descriptions: ["NPKI security protocol development"],
+    techStack: ["Security", "PKI"],
+  },
+  {
+    company: "ViewiTech",
+    role: "R&D Lab",
+    period: "2009.03 ~ 2010.03",
+    duration: "1y 1m",
+    descriptions: ["AnyView/AshView development (MFC, embedded virtual keyboard)"],
+    techStack: ["MFC", "C++", "Embedded"],
+  },
+  {
+    company: "KIT",
+    role: "ITS Division",
+    period: "2006.09 ~ 2008.12",
+    duration: "2y 4m",
+    descriptions: [
+      "Yujin ERP — vehicle tracking server (Java/Oracle)",
+      "Sampyo Remicon tracking server (MFC/MSSQL)",
+      "KIT HQ MMS/SMS server management (C/MFC)",
+      "SK C&C cashback server (UNIX C)",
+    ],
+    techStack: ["Java", "Oracle", "MFC", "MSSQL", "UNIX C"],
+  },
+];
+
+export const careers = careersKo;
+export function getCareers(locale: Locale) {
+  return locale === "en" ? careersEn : careersKo;
+}

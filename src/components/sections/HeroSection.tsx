@@ -2,9 +2,15 @@
 
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
-import { profile } from "@/data/profile";
+import { useLang } from "@/context/LanguageContext";
+import { getProfile } from "@/data/profile";
+import { t } from "@/data/i18n";
 
 export default function HeroSection() {
+  const { locale } = useLang();
+  const profile = getProfile(locale);
+  const ui = t(locale);
+
   return (
     <section
       id="hero"
@@ -63,13 +69,13 @@ export default function HeroSection() {
             href="#about"
             className="rounded-full bg-accent px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-accent-dim"
           >
-            더 알아보기
+            {ui.heroBtn1}
           </a>
           <a
             href="#contact"
             className="rounded-full border border-card-border px-6 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-accent/50 hover:text-accent"
           >
-            연락하기
+            {ui.heroBtn2}
           </a>
         </div>
       </motion.div>

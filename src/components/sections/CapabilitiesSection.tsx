@@ -12,7 +12,9 @@ import {
   Server,
 } from "lucide-react";
 import SectionWrapper from "@/components/ui/SectionWrapper";
-import { capabilities } from "@/data/capabilities";
+import { useLang } from "@/context/LanguageContext";
+import { getCapabilities } from "@/data/capabilities";
+import { t } from "@/data/i18n";
 
 const iconMap: Record<string, React.ElementType> = {
   LayoutDashboard,
@@ -26,13 +28,17 @@ const iconMap: Record<string, React.ElementType> = {
 };
 
 export default function CapabilitiesSection() {
+  const { locale } = useLang();
+  const capabilities = getCapabilities(locale);
+  const ui = t(locale);
+
   return (
     <SectionWrapper id="capabilities">
       <div className="mb-12">
         <h2 className="mb-2 text-3xl font-bold text-foreground">
           Capabilities
         </h2>
-        <p className="text-muted">핵심 역량</p>
+        <p className="text-muted">{ui.capSub}</p>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

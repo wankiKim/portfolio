@@ -3,7 +3,9 @@
 import { motion } from "framer-motion";
 import { ExternalLink, Lock } from "lucide-react";
 import SectionWrapper from "@/components/ui/SectionWrapper";
-import { projects, Project } from "@/data/projects";
+import { useLang } from "@/context/LanguageContext";
+import { getProjects, Project } from "@/data/projects";
+import { t } from "@/data/i18n";
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
   const isPrivate = project.visibility === "private";
@@ -57,11 +59,15 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 }
 
 export default function ProjectsSection() {
+  const { locale } = useLang();
+  const projects = getProjects(locale);
+  const ui = t(locale);
+
   return (
     <SectionWrapper id="projects">
       <div className="mb-12">
         <h2 className="mb-2 text-3xl font-bold text-foreground">Projects</h2>
-        <p className="text-muted">주요 프로젝트</p>
+        <p className="text-muted">{ui.projSub}</p>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
