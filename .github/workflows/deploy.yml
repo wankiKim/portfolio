@@ -52,7 +52,7 @@ jobs:
 
       - name: Terraform Apply
         working-directory: infra
-        run: terraform apply -auto-approve
+        run: terraform apply -auto-approve -var="enable_domain=true" -var="domain_name=agentmichael.me"
 
       - name: Get Terraform outputs
         id: tf
