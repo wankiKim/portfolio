@@ -19,64 +19,32 @@ provider "aws" {
   region = "ap-northeast-2"
 }
 
-# CloudFront + ACM은 us-east-1 필수
 provider "aws" {
   alias  = "us_east_1"
   region = "us-east-1"
 }
 
+variable "domain_name" {
+  description = "커스텀 도메인 (비워두면 CloudFront 기본 도메인 사용)"
+  type        = string
+  default     = ""
+}
+
+variable "enable_domain" {
+  description = "도메인 + ACM 인증서 활성화 여부"
+  type        = bool
+  default     = false
+}
+
 locals {
-  project     = "wk-portfolio"
-  domain_name = "michael.it"
+  project = "wk-portfolio"
   tags = {
     Project   = "wk-portfolio"
     ManagedBy = "terraform"
   }
 }
 
-# ─── Route53 호스팅 존 ───
-resource "aws_route53_zone" "main" {
-  name = local.domain_name
-  tags = local.tags
-}
-
-# ─── ACM 인증서 (us-east-1, CloudFront용) ───
-resource "aws_acm_certificate" "site" {
-  provider          = aws.us_east_1
-  domain_name       = local.domain_name
-  subject_alternative_names = ["*.${local.domain_name}"]
-  validation_method = "DNS"
-  tags              = local.tags
-
-  lifecycle {
-    create_before_destroy = true
-  }
-}
-
-# ACM DNS 검증 레코드
-resource "aws_route53_record" "cert_validation" {
-  for_each = {
-    for dvo in aws_acm_certificate.site.domain_validation_options : dvo.domain_name => {
-      name   = dvo.resource_record_name
-      record = dvo.resource_record_value
-      type   = dvo.resource_record_type
-    }
-  }
-
-  zone_id = aws_route53_zone.main.zone_id
-  name    = each.value.name
-  type    = each.value.type
-  records = [each.value.record]
-  ttl     = 300
-}
-
-resource "aws_acm_certificate_validation" "site" {
-  provider                = aws.us_east_1
-  certificate_arn         = aws_acm_certificate.site.arn
-  validation_record_fqdns = [for record in aws_route53_record.cert_validation : record.fqdn]
-}
-
-# ─── S3 버킷 (정적 호스팅) ───
+# ─── S3 버킷 ───
 resource "aws_s3_bucket" "site" {
   bucket = "${local.project}-site"
   tags   = local.tags
@@ -92,14 +60,8 @@ resource "aws_s3_bucket_public_access_block" "site" {
 
 resource "aws_s3_bucket_website_configuration" "site" {
   bucket = aws_s3_bucket.site.id
-
-  index_document {
-    suffix = "index.html"
-  }
-
-  error_document {
-    key = "404.html"
-  }
+  index_document { suffix = "index.html" }
+  error_document { key = "404.html" }
 }
 
 # ─── CloudFront OAC ───
@@ -110,13 +72,48 @@ resource "aws_cloudfront_origin_access_control" "site" {
   signing_protocol                  = "sigv4"
 }
 
+# ─── Route53 (도메인 활성화 시에만) ───
+resource "aws_route53_zone" "main" {
+  count = var.enable_domain ? 1 : 0
+  name  = var.domain_name
+  tags  = local.tags
+}
+
+# ─── ACM 인증서 (도메인 활성화 시에만) ───
+resource "aws_acm_certificate" "site" {
+  count                     = var.enable_domain ? 1 : 0
+  provider                  = aws.us_east_1
+  domain_name               = var.domain_name
+  subject_alternative_names = ["*.${var.domain_name}"]
+  validation_method         = "DNS"
+  tags                      = local.tags
+  lifecycle { create_before_destroy = true }
+}
+
+resource "aws_route53_record" "cert_validation" {
+  count = var.enable_domain ? 1 : 0
+
+  zone_id = aws_route53_zone.main[0].zone_id
+  name    = tolist(aws_acm_certificate.site[0].domain_validation_options)[0].resource_record_name
+  type    = tolist(aws_acm_certificate.site[0].domain_validation_options)[0].resource_record_type
+  records = [tolist(aws_acm_certificate.site[0].domain_validation_options)[0].resource_record_value]
+  ttl     = 300
+}
+
+resource "aws_acm_certificate_validation" "site" {
+  count                   = var.enable_domain ? 1 : 0
+  provider                = aws.us_east_1
+  certificate_arn         = aws_acm_certificate.site[0].arn
+  validation_record_fqdns = [aws_route53_record.cert_validation[0].fqdn]
+}
+
 # ─── CloudFront Distribution ───
 resource "aws_cloudfront_distribution" "site" {
   enabled             = true
   default_root_object = "index.html"
   comment             = "Michael Kim Portfolio"
   price_class         = "PriceClass_200"
-  aliases             = [local.domain_name, "www.${local.domain_name}"]
+  aliases             = var.enable_domain ? [var.domain_name, "www.${var.domain_name}"] : []
   tags                = local.tags
 
   origin {
@@ -134,9 +131,7 @@ resource "aws_cloudfront_distribution" "site" {
 
     forwarded_values {
       query_string = false
-      cookies {
-        forward = "none"
-      }
+      cookies { forward = "none" }
     }
 
     min_ttl     = 0
@@ -144,7 +139,6 @@ resource "aws_cloudfront_distribution" "site" {
     max_ttl     = 86400
   }
 
-  # SPA 라우팅 — 404를 index.html로
   custom_error_response {
     error_code         = 403
     response_code      = 200
@@ -158,47 +152,43 @@ resource "aws_cloudfront_distribution" "site" {
   }
 
   restrictions {
-    geo_restriction {
-      restriction_type = "none"
-    }
+    geo_restriction { restriction_type = "none" }
   }
 
   viewer_certificate {
-    acm_certificate_arn      = aws_acm_certificate_validation.site.certificate_arn
-    ssl_support_method       = "sni-only"
-    minimum_protocol_version = "TLSv1.2_2021"
+    cloudfront_default_certificate = var.enable_domain ? false : true
+    acm_certificate_arn            = var.enable_domain ? aws_acm_certificate_validation.site[0].certificate_arn : null
+    ssl_support_method             = var.enable_domain ? "sni-only" : null
+    minimum_protocol_version       = var.enable_domain ? "TLSv1.2_2021" : "TLSv1"
   }
 }
 
-# ─── S3 버킷 정책 (CloudFront만 접근 허용) ───
+# ─── S3 버킷 정책 ───
 resource "aws_s3_bucket_policy" "site" {
   bucket = aws_s3_bucket.site.id
-
   policy = jsonencode({
     Version = "2012-10-17"
-    Statement = [
-      {
-        Sid       = "AllowCloudFront"
-        Effect    = "Allow"
-        Principal = { Service = "cloudfront.amazonaws.com" }
-        Action    = "s3:GetObject"
-        Resource  = "${aws_s3_bucket.site.arn}/*"
-        Condition = {
-          StringEquals = {
-            "AWS:SourceArn" = aws_cloudfront_distribution.site.arn
-          }
+    Statement = [{
+      Sid       = "AllowCloudFront"
+      Effect    = "Allow"
+      Principal = { Service = "cloudfront.amazonaws.com" }
+      Action    = "s3:GetObject"
+      Resource  = "${aws_s3_bucket.site.arn}/*"
+      Condition = {
+        StringEquals = {
+          "AWS:SourceArn" = aws_cloudfront_distribution.site.arn
         }
       }
-    ]
+    }]
   })
 }
 
-# ─── Route53 DNS 레코드 (도메인 → CloudFront) ───
+# ─── Route53 A 레코드 (도메인 활성화 시에만) ───
 resource "aws_route53_record" "root" {
-  zone_id = aws_route53_zone.main.zone_id
-  name    = local.domain_name
+  count   = var.enable_domain ? 1 : 0
+  zone_id = aws_route53_zone.main[0].zone_id
+  name    = var.domain_name
   type    = "A"
-
   alias {
     name                   = aws_cloudfront_distribution.site.domain_name
     zone_id                = aws_cloudfront_distribution.site.hosted_zone_id
@@ -207,10 +197,10 @@ resource "aws_route53_record" "root" {
 }
 
 resource "aws_route53_record" "www" {
-  zone_id = aws_route53_zone.main.zone_id
-  name    = "www.${local.domain_name}"
+  count   = var.enable_domain ? 1 : 0
+  zone_id = aws_route53_zone.main[0].zone_id
+  name    = "www.${var.domain_name}"
   type    = "A"
-
   alias {
     name                   = aws_cloudfront_distribution.site.domain_name
     zone_id                = aws_cloudfront_distribution.site.hosted_zone_id

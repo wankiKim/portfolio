@@ -11,10 +11,10 @@ output "cloudfront_domain" {
 }
 
 output "site_url" {
-  value = "https://${local.domain_name}"
+  value = var.enable_domain ? "https://${var.domain_name}" : "https://${aws_cloudfront_distribution.site.domain_name}"
 }
 
 output "nameservers" {
-  value       = aws_route53_zone.main.name_servers
-  description = "이 네임서버를 도메인 등록기관에 설정해주세요"
+  value       = var.enable_domain ? aws_route53_zone.main[0].name_servers : []
+  description = "도메인 등록기관에 이 네임서버를 설정해주세요"
 }
