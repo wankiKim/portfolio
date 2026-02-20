@@ -8,10 +8,21 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative flex min-h-screen flex-col items-center justify-center px-6"
+      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6"
     >
-      {/* Background gradient */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-accent/5 via-transparent to-transparent" />
+      {/* Background video */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-60"
+      >
+        <source src="/videos/hero-bg-composite.mp4" type="video/mp4" />
+      </video>
+
+      {/* Overlay gradient */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-accent/10 via-background/80 to-background" />
 
       <motion.div
         initial={{ opacity: 0, y: 30 }}

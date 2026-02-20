@@ -7,6 +7,7 @@ const SECTIONS = [
   "about",
   "journey",
   "capabilities",
+  "ai-workflow",
   "skills",
   "projects",
   "contact",
