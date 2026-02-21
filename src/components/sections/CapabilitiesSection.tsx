@@ -10,6 +10,7 @@ import {
   Sparkles,
   Database,
   Server,
+  Cpu,
 } from "lucide-react";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import { useLang } from "@/context/LanguageContext";
@@ -25,6 +26,7 @@ const iconMap: Record<string, React.ElementType> = {
   Sparkles,
   Database,
   Server,
+  Cpu,
 };
 
 export default function CapabilitiesSection() {

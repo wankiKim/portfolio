@@ -75,6 +75,42 @@ const projectsKo: Project[] = [
     visibility: "private",
   },
   {
+    name: "KoCoin 암호화폐 거래소",
+    description:
+      "17개 마이크로서비스로 구성된 풀스택 암호화폐 거래소. 스팟 매칭 엔진, 선물 거래, P2P OTC, 마켓메이킹 봇 등 거래소 핵심 기능 전체 구현. Terraform으로 AWS 인프라를 코드로 관리하고, GitHub Actions로 12개 백엔드 + 2개 프론트엔드를 병렬 빌드·배포.",
+    techStack: ["Spring Boot 3.4", "Java 21", "Next.js", "AWS ECS", "Terraform", "Kafka", "Redis"],
+    visibility: "public",
+  },
+  {
+    name: "DDangZip 부동산 급매 알림",
+    description:
+      "7개 마이크로서비스(API Gateway, 인증, 크롤러, 알림, 위치, 매물 등)로 구성된 부동산 급매 알림 플랫폼. Spring Cloud Gateway + Eureka + Resilience4j MSA 인프라 구현. MongoDB GeoJSON 위치 기반 매물 검색.",
+    techStack: ["Spring Boot 3.2", "Flutter", "Spring Cloud Gateway", "Eureka", "MySQL", "MongoDB", "Redis", "RabbitMQ"],
+    visibility: "public",
+  },
+  {
+    name: "Auto-Claude",
+    description:
+      "AI 에이전트가 소프트웨어를 자율적으로 계획·구축·검증하는 멀티 에이전트 프레임워크. 최대 12개 병렬 터미널에서 동시 작업, 격리된 Git Worktree 환경에서 안전한 코드 생성. 자체 검증 QA 루프와 AI 기반 충돌 해결.",
+    techStack: ["Python", "Electron", "Claude API", "Git Worktrees"],
+    visibility: "public",
+  },
+  {
+    name: "Hunik Web 기업 홈페이지",
+    company: "휴니크",
+    description:
+      "Turborepo 기반 모노레포 구조로 프론트엔드(Next.js), 백엔드(Express), 어드민(React Admin), 공유 패키지를 하나의 저장소에서 관리. 보안 점수 98/100, 코드 품질 96/100 달성.",
+    techStack: ["Next.js 14", "Express.js", "React Admin", "Turborepo", "MongoDB"],
+    visibility: "private",
+  },
+  {
+    name: "Zelotek 레거시 MSA 전환",
+    description:
+      "레거시 PHP 키오스크 시스템을 12개 Java Spring Boot 마이크로서비스로 현대화. Clean Architecture 4계층 적용, Strangler Pattern 점진적 마이그레이션. REST(동기) + RabbitMQ(비동기 이벤트) 혼합 통신, Saga Pattern(Orchestration) 분산 트랜잭션.",
+    techStack: ["Spring Boot 3.x", "Java 17", "PostgreSQL", "Redis", "RabbitMQ", "Kong", "AWS EKS"],
+    visibility: "public",
+  },
+  {
     name: "bkit-claude-code",
     description:
       "Claude Code를 위한 Vibecoding Kit 플러그인. PDCA 기반 개발 워크플로우 자동화.",
@@ -85,8 +121,8 @@ const projectsKo: Project[] = [
   {
     name: "BUJA",
     description:
-      "개인 프로젝트 — 부동산 자산 분석 서비스.",
-    techStack: ["TypeScript", "Next.js"],
+      "OpenAI와 Google Gemini 듀얼 AI 분석 시스템 기반 부동산 투자분석 플랫폼. 실거래가 데이터 기반 아파트 투자 분석, 선형 회귀 가격 예측, 카카오맵 주변 인프라 분석, 네이버 뉴스 부동산 정책 모니터링.",
+    techStack: ["Node.js", "Flutter", "MongoDB", "GPT-4o-mini", "Gemini", "Docker"],
     visibility: "public",
     url: "https://github.com/wankiKim/BUJA",
   },
@@ -158,6 +194,42 @@ const projectsEn: Project[] = [
     visibility: "private",
   },
   {
+    name: "KoCoin Crypto Exchange",
+    description:
+      "Full-stack crypto exchange with 17 microservices. Spot matching engine, futures trading, P2P OTC, market-making bots — all core exchange features. AWS infra managed via Terraform, 12 backend + 2 frontend parallel build/deploy with GitHub Actions.",
+    techStack: ["Spring Boot 3.4", "Java 21", "Next.js", "AWS ECS", "Terraform", "Kafka", "Redis"],
+    visibility: "public",
+  },
+  {
+    name: "DDangZip Property Alert",
+    description:
+      "Real estate deal alert platform with 7 microservices (API Gateway, Auth, Crawler, Notification, Location, Listing). Spring Cloud Gateway + Eureka + Resilience4j MSA. MongoDB GeoJSON location-based property search.",
+    techStack: ["Spring Boot 3.2", "Flutter", "Spring Cloud Gateway", "Eureka", "MySQL", "MongoDB", "Redis", "RabbitMQ"],
+    visibility: "public",
+  },
+  {
+    name: "Auto-Claude",
+    description:
+      "Autonomous multi-agent coding framework where AI agents plan, build & verify software. Up to 12 parallel terminals, isolated Git Worktree environments for safe code generation. Self-verifying QA loop and AI-powered conflict resolution.",
+    techStack: ["Python", "Electron", "Claude API", "Git Worktrees"],
+    visibility: "public",
+  },
+  {
+    name: "Hunik Web Corporate Site",
+    company: "Hunik Inc.",
+    description:
+      "Turborepo monorepo managing Frontend (Next.js), Backend (Express), Admin (React Admin), and shared packages. Achieved 98/100 security score and 96/100 code quality.",
+    techStack: ["Next.js 14", "Express.js", "React Admin", "Turborepo", "MongoDB"],
+    visibility: "private",
+  },
+  {
+    name: "Zelotek Legacy-to-MSA",
+    description:
+      "Modernized legacy PHP kiosk system into 12 Java Spring Boot microservices. Clean Architecture 4-layer, Strangler Pattern migration. REST (sync) + RabbitMQ (async event) hybrid, Saga Pattern (Orchestration) distributed transactions.",
+    techStack: ["Spring Boot 3.x", "Java 17", "PostgreSQL", "Redis", "RabbitMQ", "Kong", "AWS EKS"],
+    visibility: "public",
+  },
+  {
     name: "bkit-claude-code",
     description:
       "Vibecoding Kit plugin for Claude Code. PDCA-based development workflow automation.",
@@ -168,8 +240,8 @@ const projectsEn: Project[] = [
   {
     name: "BUJA",
     description:
-      "Personal project — Real estate asset analysis service.",
-    techStack: ["TypeScript", "Next.js"],
+      "AI-powered real estate investment analysis platform with dual AI (OpenAI + Google Gemini). Real transaction data analysis, linear regression price prediction, Kakao Map infrastructure analysis, Naver News policy monitoring.",
+    techStack: ["Node.js", "Flutter", "MongoDB", "GPT-4o-mini", "Gemini", "Docker"],
     visibility: "public",
     url: "https://github.com/wankiKim/BUJA",
   },

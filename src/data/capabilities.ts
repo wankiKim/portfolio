@@ -9,7 +9,8 @@ const capKo: Capability[] = [
   { title: "풀스택 개발", icon: "Code", description: "Java/Spring 백엔드, Vue.js/React 프론트엔드, Flutter 모바일. DB 설계부터 CI/CD까지 전 영역을 커버합니다." },
   { title: "AI & 자동화", icon: "Sparkles", description: "OpenAI/Claude 기반 AI Agent 개발, CS 자동화, Claude Code로 개발 워크플로우 혁신. AI 네이티브 개발 선도." },
   { title: "데이터베이스", icon: "Database", description: "MySQL, MongoDB, Oracle, Redis, MSSQL — RDBMS와 NoSQL 최적화. 인덱싱, 파티셔닝, 모니터링 구성 전문." },
-  { title: "DevOps & 인프라", icon: "Server", description: "AWS (Load Balancing, KMS, RDS), CI/CD (GitLab, Jenkins), Docker. Prometheus/Grafana 모니터링 환경 구축." },
+  { title: "DevOps & 인프라", icon: "Server", description: "AWS (ECS Fargate, EKS, RDS, ElastiCache, MSK), Terraform IaC, CI/CD (GitHub Actions, GitLab, Jenkins), Docker. Prometheus/Grafana 모니터링 환경 구축." },
+  { title: "IoT & 하드웨어", icon: "Cpu", description: "무인 커피머신 키오스크 소프트웨어 개발. RS-232 시리얼 통신, 실시간 기기 상태 모니터링(0.5초 폴링), HEX/ASCII 패킷 로깅, 우선순위 기반 명령 큐 시스템." },
 ];
 
 const capEn: Capability[] = [
@@ -20,7 +21,8 @@ const capEn: Capability[] = [
   { title: "Full-Stack Development", icon: "Code", description: "Java/Spring backend, Vue.js/React frontend, Flutter mobile. Covers everything from DB design to CI/CD." },
   { title: "AI & Automation", icon: "Sparkles", description: "AI Agent development with OpenAI/Claude, CS automation, revolutionizing dev workflow with Claude Code. Leading AI-native development." },
   { title: "Database", icon: "Database", description: "MySQL, MongoDB, Oracle, Redis, MSSQL — RDBMS and NoSQL optimization. Indexing, partitioning, and monitoring expert." },
-  { title: "DevOps & Infra", icon: "Server", description: "AWS (Load Balancing, KMS, RDS), CI/CD (GitLab, Jenkins), Docker. Prometheus/Grafana monitoring setup." },
+  { title: "DevOps & Infra", icon: "Server", description: "AWS (ECS Fargate, EKS, RDS, ElastiCache, MSK), Terraform IaC, CI/CD (GitHub Actions, GitLab, Jenkins), Docker. Prometheus/Grafana monitoring setup." },
+  { title: "IoT & Hardware", icon: "Cpu", description: "Unmanned coffee machine kiosk software. RS-232 serial communication, real-time device monitoring (0.5s polling), HEX/ASCII packet logging, priority-based command queue system." },
 ];
 
 export const capabilities = capKo;

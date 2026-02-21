@@ -13,7 +13,7 @@ const profileData: Record<Locale, Profile> = {
     location: "경기 수원시",
     github: "wankiKim",
     summary:
-      "18년간 통신 서버부터 블록체인 거래소, AI 에이전트까지 — 기술의 변화를 직접 경험하고 이끌어온 풀스택 개발자입니다. 현재 휴니크 연구소장으로서 MSA 기반 ERP, 무인 머신, CS AI 등 다양한 프로젝트를 설계하고 구현하고 있습니다.",
+      "18년간 통신 서버부터 블록체인 거래소, AI 에이전트까지 — 기술의 변화를 직접 경험하고 이끌어온 풀스택 개발자입니다. Claude, GPT-4, Gemini 등 최신 AI를 개발 워크플로우에 깊이 통합하여, 기획부터 설계·구현·배포까지 AI와 협업하는 방식으로 15개 이상의 실전 프로젝트를 구축해왔습니다. AI를 아키텍처 설계 파트너이자 코드 리뷰어로 활용하며 엔지니어링 품질을 끌어올리는 데 집중합니다.",
   },
   en: {
     name: "MICHAEL KIM",
@@ -26,7 +26,7 @@ const profileData: Record<Locale, Profile> = {
     location: "Suwon, South Korea",
     github: "wankiKim",
     summary:
-      "18 years of hands-on experience from telecom servers to blockchain exchanges and AI agents — a full-stack developer who has witnessed and led every wave of tech evolution. Currently serving as R&D Lab Director at Hunik, designing and building MSA-based ERP, unmanned machines, and AI-powered customer service systems.",
+      "18 years of hands-on experience from telecom servers to blockchain exchanges and AI agents — a full-stack developer who has witnessed and led every wave of tech evolution. Deeply integrating Claude, GPT-4, and Gemini into the development workflow, I've built 15+ production projects through AI collaboration from planning to deployment. I focus on leveraging AI as an architecture design partner and code reviewer to elevate engineering quality.",
   },
 };
 
