@@ -22,7 +22,10 @@ const ui = {
     aiCta1: '"10명이 3개월 걸릴 일을, 1명이 3주 만에 끝낸다"',
     aiCta2: "18년 아키텍처 경험 + Claude Code = 엔터프라이즈급 1인 개발의 새로운 기준",
     // Projects
-    projSub: "프로젝트",
+    projSub: "펌웨어부터 클라우드까지 — 실제로 만들고 운영한 것들",
+    projFeatured: "대표 프로젝트",
+    projMain: "프로젝트",
+    projSide: "사이드 프로젝트",
     // Contact
     contactSub: "함께 일하거나, 기술에 대해 이야기하고 싶으시다면 연락해주세요.",
     contactQuote: "불가능은 없다 — 무언가 훌륭한 일을 시도하다가 실패하기를 원합니다.",
@@ -43,7 +46,10 @@ const ui = {
     aiCases: "Case Studies",
     aiCta1: '"What takes a team of 10 three months, I finish alone in 3 weeks"',
     aiCta2: "18 years of architecture experience + Claude Code = A new standard for solo enterprise development",
-    projSub: "Projects",
+    projSub: "From firmware to cloud — things actually built and operated",
+    projFeatured: "Featured",
+    projMain: "Projects",
+    projSide: "Side Projects",
     contactSub: "Want to work together or talk about tech? Get in touch.",
     contactQuote: "Nothing is impossible — I'd rather fail at attempting something great.",
     footerCopy: "MICHAEL KIM",

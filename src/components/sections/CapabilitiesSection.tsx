@@ -11,6 +11,7 @@ import {
   Database,
   Server,
   Cpu,
+  RefreshCw,
 } from "lucide-react";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import { useLang } from "@/context/LanguageContext";
@@ -27,6 +28,7 @@ const iconMap: Record<string, React.ElementType> = {
   Database,
   Server,
   Cpu,
+  RefreshCw,
 };
 
 export default function CapabilitiesSection() {
