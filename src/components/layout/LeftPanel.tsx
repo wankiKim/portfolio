@@ -5,6 +5,7 @@ import { Github, Mail, BookOpen, ArrowUpRight } from "lucide-react";
 import { useLang } from "@/context/LanguageContext";
 import { getProfile } from "@/data/profile";
 import { t } from "@/data/i18n";
+import Typewriter from "@/components/layout/Typewriter";
 
 const SECTION_IDS = ["about", "experience", "projects", "ai", "writing"];
 
@@ -41,13 +42,16 @@ export default function LeftPanel() {
   return (
     <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[44%] lg:flex-col lg:justify-between lg:py-24">
       <div>
-        <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+        <h1 className="gradient-text text-4xl font-bold tracking-tight sm:text-5xl">
           {profile.name}
         </h1>
         <h2 className="mt-3 text-lg font-medium tracking-tight text-foreground">
           {profile.title}
         </h2>
         <p className="mt-4 max-w-xs leading-relaxed">{profile.headline}</p>
+        <div className="mt-4 h-5">
+          <Typewriter words={[...profile.keywords]} />
+        </div>
 
         <nav className="mt-16 hidden lg:block" aria-label="In-page navigation">
           <ul className="w-max">
