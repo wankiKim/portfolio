@@ -1,223 +1,91 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Bot, Zap, Timer, Shield, ArrowRight, ExternalLink, BookOpen, Activity } from "lucide-react";
-import SectionWrapper from "@/components/ui/SectionWrapper";
+import { ArrowUpRight, BookOpen } from "lucide-react";
 import { useLang } from "@/context/LanguageContext";
 import { getAIWorkflow } from "@/data/ai-workflow";
 import { t } from "@/data/i18n";
 
 export default function AIWorkflowSection() {
   const { locale } = useLang();
-  const { stats, cases, process } = getAIWorkflow(locale);
+  const { stats, cases } = getAIWorkflow(locale);
   const ui = t(locale);
 
   return (
-    <SectionWrapper id="ai-workflow">
-      <div className="mb-12">
-        <div className="mb-2 flex items-center gap-3">
-          <h2 className="text-3xl font-bold text-foreground">
-            AI-Powered Development
-          </h2>
-          <span className="flex items-center gap-1 rounded-full bg-accent/10 px-3 py-1 text-xs font-medium text-accent">
-            <Bot size={14} />
-            Claude Code
-          </span>
-        </div>
-        <p className="max-w-2xl text-muted">
-          {ui.aiSub}
-        </p>
+    <section id="ai" className="mb-24 scroll-mt-24 lg:mb-36">
+      <div className="sticky top-0 z-20 -mx-6 mb-4 bg-background/75 px-6 py-5 backdrop-blur lg:sr-only">
+        <h2 className="text-sm font-bold uppercase tracking-widest text-foreground">
+          {ui.aiTitle}
+        </h2>
       </div>
 
-      {/* Stats */}
-      <div className="mb-16 grid grid-cols-2 gap-4 lg:grid-cols-4">
-        {stats.map((stat, i) => (
-          <motion.div
-            key={stat.label}
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: i * 0.1 }}
-            className="rounded-2xl border border-card-border bg-card p-5 text-center"
-          >
-            <div className="mb-1 text-3xl font-bold text-accent">
-              {stat.value}
-            </div>
-            <div className="mb-2 text-sm font-medium text-foreground">
-              {stat.label}
-            </div>
-            <p className="text-xs leading-relaxed text-muted">
-              {stat.description}
-            </p>
-          </motion.div>
+      <p className="mb-8 text-sm leading-relaxed">{ui.aiSub}</p>
+
+      <div className="mb-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
+        {stats.map((stat) => (
+          <div key={stat.label} className="rounded-lg border border-card-border/50 p-4 text-center">
+            <div className="font-mono text-2xl font-bold text-accent">{stat.value}</div>
+            <div className="mt-1 text-xs font-medium text-foreground">{stat.label}</div>
+          </div>
         ))}
       </div>
 
-      {/* Process */}
-      <div className="mb-16">
-        <h3 className="mb-6 text-lg font-semibold text-foreground">
-          {ui.aiWorkflow}
-        </h3>
-        <div className="grid gap-4 md:grid-cols-3">
-          {process.map((p, i) => (
-            <motion.div
-              key={p.step}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.15 }}
-              className="relative rounded-2xl border border-card-border bg-card p-5"
-            >
-              <div className="mb-3 flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-accent/10 font-mono text-sm font-bold text-accent">
-                  {p.step}
-                </span>
-                <h4 className="text-sm font-semibold text-foreground">
-                  {p.title}
-                </h4>
-              </div>
-              <p className="text-xs leading-relaxed text-muted">
-                {p.description}
+      <ol className="group/list">
+        {cases.map((c) => (
+          <li key={c.title} className="mb-8">
+            <div className="group relative rounded-lg transition-all lg:-mx-4 lg:p-4 lg:hover:bg-card/50 lg:hover:shadow-inner lg:group-hover/list:opacity-60 lg:hover:!opacity-100">
+              <h3 className="font-medium text-foreground transition-colors group-hover:text-accent">
+                {c.title}
+              </h3>
+              <p className="mt-0.5 text-xs text-muted/80">
+                {c.scale} · {c.duration}
               </p>
-              {i < process.length - 1 && (
-                <ArrowRight
-                  size={16}
-                  className="absolute -right-2.5 top-1/2 hidden -translate-y-1/2 text-accent/40 md:block"
-                />
-              )}
-            </motion.div>
-          ))}
-        </div>
-      </div>
+              <p className="mt-2 text-sm leading-relaxed">{c.description}</p>
 
-      {/* Cases */}
-      <div>
-        <h3 className="mb-6 text-lg font-semibold text-foreground">
-          {ui.aiCases}
-        </h3>
-        <div className="grid gap-4 md:grid-cols-2">
-          {cases.map((c, i) => (
-            <motion.div
-              key={c.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.1 }}
-              className={`group rounded-2xl border p-5 transition-all hover:shadow-lg ${
-                c.highlight
-                  ? "col-span-full border-accent/40 bg-gradient-to-br from-accent/5 via-card to-card hover:border-accent/60 hover:shadow-accent/10"
-                  : "border-card-border bg-card hover:border-accent/30 hover:shadow-accent/5"
-              }`}
-            >
-              <div className="mb-3 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  {c.highlight && (
-                    <span className="rounded-md bg-accent/20 px-1.5 py-0.5 text-[10px] font-bold text-accent">
-                      FEATURED
-                    </span>
-                  )}
-                  <h4 className={`font-semibold text-foreground ${c.highlight ? "text-base" : "text-sm"}`}>
-                    {c.title}
-                  </h4>
-                </div>
-                <div className="flex items-center gap-2">
-                  {c.solo && (
-                    <span className="flex items-center gap-1 rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-medium text-emerald-400">
-                      <Zap size={10} />
-                      Solo
-                    </span>
-                  )}
-                  <span className="flex items-center gap-1 rounded-full bg-accent/10 px-2 py-0.5 text-[10px] font-medium text-accent">
-                    <Timer size={10} />
-                    {c.duration}
-                  </span>
-                </div>
-              </div>
-
-              <div className="mb-3 flex items-center gap-2 text-xs text-muted">
-                <Shield size={12} className="text-accent/60" />
-                {c.scale}
-              </div>
-
-              <p className={`mb-4 leading-relaxed text-muted ${c.highlight ? "text-sm" : "text-xs"}`}>
-                {c.description}
-              </p>
-
-              {/* Performance metrics for highlighted */}
               {c.metrics && (
-                <div className="mb-4 grid grid-cols-1 gap-2 sm:grid-cols-3">
+                <ul className="mt-2 space-y-0.5 text-xs">
                   {c.metrics.map((m) => (
-                    <div
-                      key={m}
-                      className="flex items-center gap-2 rounded-lg bg-background/80 px-3 py-2 text-xs"
-                    >
-                      <Activity size={12} className="shrink-0 text-emerald-400" />
-                      <span className="text-foreground">{m}</span>
-                    </div>
+                    <li key={m}>— {m}</li>
                   ))}
-                </div>
+                </ul>
               )}
 
-              <div className="flex items-center justify-between">
-                <div className="flex flex-wrap gap-1.5">
-                  {c.techStack.map((tech) => (
-                    <span
-                      key={tech}
-                      className="rounded-md bg-background px-2 py-0.5 text-[10px] text-muted"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Links */}
-                {(c.liveUrl || c.blogUrl) && (
-                  <div className="flex shrink-0 items-center gap-2">
-                    {c.liveUrl && (
-                      <a
-                        href={c.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-1 rounded-full bg-accent px-3 py-1 text-[10px] font-medium text-white transition-colors hover:bg-accent-dim"
-                      >
-                        <ExternalLink size={10} />
-                        Live Demo
-                      </a>
-                    )}
-                    {c.blogUrl && (
-                      <a
-                        href={c.blogUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-1 rounded-full border border-card-border px-3 py-1 text-[10px] font-medium text-muted transition-colors hover:border-accent/50 hover:text-accent"
-                      >
-                        <BookOpen size={10} />
-                        Blog
-                      </a>
-                    )}
-                  </div>
+              <div className="mt-3 flex flex-wrap items-center gap-4">
+                {c.liveUrl && (
+                  <a
+                    href={c.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1 text-xs font-medium text-accent hover:underline"
+                  >
+                    {ui.aiLive} <ArrowUpRight size={12} />
+                  </a>
+                )}
+                {c.blogUrl && (
+                  <a
+                    href={c.blogUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1 text-xs font-medium text-accent hover:underline"
+                  >
+                    <BookOpen size={12} /> {ui.aiBlog}
+                  </a>
                 )}
               </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
 
-      {/* CTA */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.3 }}
-        className="mt-12 rounded-2xl border border-accent/20 bg-accent/5 p-6 text-center"
-      >
-        <p className="mb-1 text-sm font-medium text-foreground">
-          {ui.aiCta1}
-        </p>
-        <p className="text-xs text-muted">
-          {ui.aiCta2}
-        </p>
-      </motion.div>
-    </SectionWrapper>
+              <ul className="mt-3 flex flex-wrap gap-1.5">
+                {c.techStack.map((tech) => (
+                  <li
+                    key={tech}
+                    className="rounded-full bg-accent/10 px-3 py-1 text-xs font-medium text-accent"
+                  >
+                    {tech}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </section>
   );
 }
