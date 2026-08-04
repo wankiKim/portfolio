@@ -52,7 +52,7 @@ const projectsKo: Project[] = [
     image: "/images/projects/kocoinex.jpg",
     category: "featured",
     description:
-      "현물·선물·OTC를 갖춘 거래소를 레거시 Java/Spring에서 Go 13개 서비스 + Rust 매칭 엔진 2개로 재플랫폼. 가격-시간 우선순위 오더북, 선물 청산·펀딩비·TP/SL 엔진, Kafka 체결 파이프라인, STOMP 실시간 시세를 구현하고 Terraform으로 AWS ECS Fargate에 배포해 라이브 데모로 운영 중.",
+      "현물·선물·OTC를 갖춘 거래소를 레거시 Java/Spring에서 Go 13개 서비스 + Rust 매칭 엔진 2개로 재플랫폼. 가격-시간 우선순위 오더북, 선물 청산·펀딩비·TP/SL 엔진, Kafka 체결 파이프라인, STOMP 실시간 시세를 구현하고 Terraform으로 AWS ECS Fargate에 배포해 라이브 데모 운영으로 검증까지 마쳤습니다.",
     metrics: [
       "Go + Rust 48,000+ LOC · MySQL 테이블 102개",
       "Rust 오더북 매칭 엔진 — BTreeMap 가격 레벨 + FIFO, 벤치마크 포함",
@@ -61,14 +61,13 @@ const projectsKo: Project[] = [
     ],
     techStack: ["Go", "Rust", "Kafka", "Next.js 16", "MySQL", "MongoDB", "Redis", "Terraform"],
     visibility: "private",
-    url: "https://exchange.agentmichael.me",
   },
   {
     name: "HunikFlow — 로우코드 엔터프라이즈 플랫폼",
     company: "휴니크",
     category: "featured",
     description:
-      "JPA 엔티티에 @Flow 어노테이션 하나를 선언하면 REST API·관리화면·권한·엑셀 내보내기까지 자동 생성되는 로우코드 플랫폼. 같은 엔진 위에 ERP 9모듈과 MES 3모듈(OEE·SPC·MRP)을 직접 구축해 플랫폼의 실효성을 증명했습니다. GraalJS 동적 API, BPM 결재 엔진, 14개 LLM 프로바이더 통합 AI 모듈 내장.",
+      "오픈소스 로우코드 프레임워크 Erupt(Apache 2.0)를 기반으로 전면 고도화한 엔터프라이즈 플랫폼. JPA 엔티티에 @Flow 어노테이션 하나를 선언하면 REST API·관리화면·권한·엑셀 내보내기까지 자동 생성됩니다. 엔진 위에 ERP 9모듈·MES 3모듈(OEE·SPC·MRP)을 직접 구축하고, GraalJS 동적 API·BPM 결재 엔진·14개 LLM 프로바이더 AI 모듈을 확장했습니다.",
     metrics: [
       "Maven 46모듈 · 엔티티 217개 · 약 98,000 LOC",
       "테스트 795+ · CodeQL/Qodana 정적분석",
@@ -224,7 +223,7 @@ const projectsEn: Project[] = [
     image: "/images/projects/kocoinex.jpg",
     category: "featured",
     description:
-      "Re-platformed a full exchange (spot, futures, OTC) from legacy Java/Spring to 13 Go services + 2 Rust matching engines. Price-time priority orderbook, futures liquidation / funding-rate / TP-SL engines, Kafka execution pipeline, STOMP real-time market data — deployed to AWS ECS Fargate via Terraform and running as a live demo.",
+      "Re-platformed a full exchange (spot, futures, OTC) from legacy Java/Spring to 13 Go services + 2 Rust matching engines. Price-time priority orderbook, futures liquidation / funding-rate / TP-SL engines, Kafka execution pipeline, STOMP real-time market data — deployed to AWS ECS Fargate via Terraform and validated through a live demo run.",
     metrics: [
       "48,000+ LOC of Go + Rust · 102 MySQL tables",
       "Rust orderbook engine — BTreeMap price levels + FIFO, with benchmarks",
@@ -233,14 +232,13 @@ const projectsEn: Project[] = [
     ],
     techStack: ["Go", "Rust", "Kafka", "Next.js 16", "MySQL", "MongoDB", "Redis", "Terraform"],
     visibility: "private",
-    url: "https://exchange.agentmichael.me",
   },
   {
     name: "HunikFlow — Low-Code Enterprise Platform",
     company: "Hunik Inc.",
     category: "featured",
     description:
-      "Declare a single @Flow annotation on a JPA entity and get REST APIs, admin screens, permissions, and Excel export — automatically. Proved the engine by building 9 ERP modules and 3 MES modules (OEE, SPC, MRP) on top of it. Ships a GraalJS dynamic-API engine, a BPM approval workflow, and an AI module integrating 14 LLM providers.",
+      "Enterprise platform built by heavily extending Erupt, an open-source low-code framework (Apache 2.0). Declare a single @Flow annotation on a JPA entity and get REST APIs, admin screens, permissions, and Excel export automatically. On top of the engine I built 9 ERP modules and 3 MES modules (OEE, SPC, MRP), and added a GraalJS dynamic-API engine, a BPM approval workflow, and an AI module integrating 14 LLM providers.",
     metrics: [
       "46 Maven modules · 217 entities · ~98,000 LOC",
       "795+ tests · CodeQL/Qodana static analysis",

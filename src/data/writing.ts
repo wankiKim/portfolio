@@ -29,7 +29,7 @@ const writingKo: WritingItem[] = [
     tag: "임베디드",
   },
   {
-    title: "어노테이션 하나로 ERP 화면이 나온다 — 로우코드 플랫폼을 직접 만든 이유",
+    title: "어노테이션 하나로 ERP 화면이 나온다 — 오픈소스 Erupt를 우리 플랫폼으로 고도화하기",
     date: "2026.08",
     url: `${BLOG}/project/hunikflow-lowcode-platform/`,
     tag: "플랫폼 설계",
@@ -62,7 +62,7 @@ const writingEn: WritingItem[] = [
     tag: "Embedded",
   },
   {
-    title: "One Annotation, a Full ERP Screen — Why I Built My Own Low-Code Platform",
+    title: "One Annotation, a Full ERP Screen — Extending Open-Source Erupt into Our Platform",
     date: "2026.08",
     url: `${BLOG}/project/hunikflow-lowcode-platform/`,
     tag: "Platform Design",
