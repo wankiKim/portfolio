@@ -36,6 +36,18 @@ function WindowCard({ project }: { project: Project }) {
         </span>
       </div>
 
+      {project.image && (
+        <div className="aspect-video overflow-hidden border-b border-card-border bg-background/60">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={project.image}
+            alt={project.name}
+            loading="lazy"
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+          />
+        </div>
+      )}
+
       <div className="flex flex-1 flex-col p-5">
         <h3 className="font-semibold text-foreground transition-colors group-hover:text-accent">
           {project.name}
@@ -74,8 +86,20 @@ function CompactCard({ project }: { project: Project }) {
   return (
     <Wrapper
       {...wrapperProps}
-      className="group flex flex-col rounded-lg border border-card-border/60 bg-card/40 p-5 transition-all hover:-translate-y-0.5 hover:border-accent/30"
+      className="group flex flex-col overflow-hidden rounded-lg border border-card-border/60 bg-card/40 transition-all hover:-translate-y-0.5 hover:border-accent/30"
     >
+      {project.image && (
+        <div className="aspect-video overflow-hidden border-b border-card-border/60 bg-background/60">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={project.image}
+            alt={project.name}
+            loading="lazy"
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+          />
+        </div>
+      )}
+      <div className="flex flex-1 flex-col p-5">
       <h3 className="flex items-baseline gap-1.5 text-sm font-semibold text-foreground transition-colors group-hover:text-accent">
         {project.name}
         {project.url ? (
@@ -92,6 +116,7 @@ function CompactCard({ project }: { project: Project }) {
           </li>
         ))}
       </ul>
+      </div>
     </Wrapper>
   );
 }

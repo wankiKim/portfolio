@@ -11,12 +11,14 @@ export interface Project {
   url?: string;
   category: ProjectCategory;
   metrics?: string[];
+  image?: string;
 }
 
 const projectsKo: Project[] = [
   // ─── 대표 프로젝트 ───
   {
     name: "Mailbean — 무인카페 플랫폼",
+    image: "/images/projects/mailbean.png",
     company: "휴니크",
     category: "featured",
     description:
@@ -32,6 +34,7 @@ const projectsKo: Project[] = [
   },
   {
     name: "Zelotek — 무인매장 키오스크 SaaS",
+    image: "/images/projects/zelotek.jpg",
     category: "featured",
     description:
       "스터디카페·세차·골프 등 13개 업종 무인매장을 위한 키오스크 + 프랜차이즈 원격관제 SaaS. 레거시 PHP 모놀리스(1,500파일)를 15개 Spring Boot 마이크로서비스로 전면 재구축해 실운영까지 완주. 업종별 if-else 분기를 Plugin Architecture로 대체해 신규 업종 추가 비용을 플러그인 1개 구현으로 줄였습니다.",
@@ -46,6 +49,7 @@ const projectsKo: Project[] = [
   },
   {
     name: "KoCoinEx — 암호화폐 거래소",
+    image: "/images/projects/kocoinex.jpg",
     category: "featured",
     description:
       "현물·선물·OTC를 갖춘 거래소를 레거시 Java/Spring에서 Go 13개 서비스 + Rust 매칭 엔진 2개로 재플랫폼. 가격-시간 우선순위 오더북, 선물 청산·펀딩비·TP/SL 엔진, Kafka 체결 파이프라인, STOMP 실시간 시세를 구현하고 Terraform으로 AWS ECS Fargate에 배포해 라이브 데모로 운영 중.",
@@ -92,6 +96,7 @@ const projectsKo: Project[] = [
   // ─── 프로젝트 ───
   {
     name: "M500/M400 커피머신 펌웨어",
+    image: "/images/projects/m500.jpg",
     company: "휴니크",
     category: "main",
     description:
@@ -118,6 +123,7 @@ const projectsKo: Project[] = [
   },
   {
     name: "MOAPICK — 의류 도매 커머스",
+    image: "/images/projects/moapick.jpg",
     category: "main",
     description:
       "실운영 중인 의류 도매 커머스 + 관리자 백오피스. 도매가는 승인된 사업자 회원에게만 서버 측에서 노출하고(클라이언트 우회 차단), 서명 URL 이미지 보호 · 엑셀 대량 등록 · 부분 출고 · 네이버 카페 자동 포스팅 큐까지 운영에 필요한 기능을 풀스택으로 구현했습니다.",
@@ -127,6 +133,7 @@ const projectsKo: Project[] = [
   },
   {
     name: "폼팡(PomPang) — 3플랫폼 아케이드 게임",
+    image: "/images/projects/pompang.png",
     category: "main",
     description:
       "와이어로 공을 터뜨리는 팡 스타일 아케이드 게임. Canvas 2D 자체 게임 엔진(RAF 루프·오브젝트 풀·스프라이트 시트) 위에 플랫폼 어댑터 계층을 두어, 단일 코드베이스로 iOS 앱스토어 · 앱인토스(토스) · 웹 3개 플랫폼에 동시 배포. 랭킹·미션·인앱결제는 별도 Node 서버가 담당합니다.",
@@ -183,6 +190,7 @@ const projectsEn: Project[] = [
   // ─── Featured ───
   {
     name: "Mailbean — Unmanned Café Platform",
+    image: "/images/projects/mailbean.png",
     company: "Hunik Inc.",
     category: "featured",
     description:
@@ -198,6 +206,7 @@ const projectsEn: Project[] = [
   },
   {
     name: "Zelotek — Unmanned Store Kiosk SaaS",
+    image: "/images/projects/zelotek.jpg",
     category: "featured",
     description:
       "Kiosk + franchise remote-management SaaS for 13 unmanned-store industries (study cafés, car washes, golf, and more). Rebuilt a legacy PHP monolith (1,500 files) into 15 Spring Boot microservices and carried it all the way to production. Replaced per-industry if-else branching with a Plugin Architecture — adding a new industry now costs one plugin implementation.",
@@ -212,6 +221,7 @@ const projectsEn: Project[] = [
   },
   {
     name: "KoCoinEx — Crypto Exchange",
+    image: "/images/projects/kocoinex.jpg",
     category: "featured",
     description:
       "Re-platformed a full exchange (spot, futures, OTC) from legacy Java/Spring to 13 Go services + 2 Rust matching engines. Price-time priority orderbook, futures liquidation / funding-rate / TP-SL engines, Kafka execution pipeline, STOMP real-time market data — deployed to AWS ECS Fargate via Terraform and running as a live demo.",
@@ -258,6 +268,7 @@ const projectsEn: Project[] = [
   // ─── Projects ───
   {
     name: "M500/M400 Coffee Machine Firmware",
+    image: "/images/projects/m500.jpg",
     company: "Hunik Inc.",
     category: "main",
     description:
@@ -284,6 +295,7 @@ const projectsEn: Project[] = [
   },
   {
     name: "MOAPICK — Wholesale Fashion Commerce",
+    image: "/images/projects/moapick.jpg",
     category: "main",
     description:
       "Wholesale fashion commerce + back office, live in production. Wholesale prices are exposed server-side only to approved business members (no client-side bypass); signed-URL image protection, Excel bulk import, partial shipment, and a Naver Café auto-posting queue — full-stack, operations included.",
@@ -293,6 +305,7 @@ const projectsEn: Project[] = [
   },
   {
     name: "PomPang — 3-Platform Arcade Game",
+    image: "/images/projects/pompang.png",
     category: "main",
     description:
       "Pang-style arcade game — shoot wires, pop balls. A custom Canvas 2D engine (RAF loop, object pools, sprite sheets) with a platform-adapter layer shipping one codebase to three platforms: iOS App Store, Apps-in-Toss, and web. Ranking, missions, and IAP run on a separate Node server.",
