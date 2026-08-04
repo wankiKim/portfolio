@@ -3,6 +3,7 @@
 import { useLang } from "@/context/LanguageContext";
 import { getCareers } from "@/data/career";
 import { t } from "@/data/i18n";
+import SectionHeader from "@/components/ui/SectionHeader";
 
 export default function ExperienceSection() {
   const { locale } = useLang();
@@ -10,48 +11,42 @@ export default function ExperienceSection() {
   const ui = t(locale);
 
   return (
-    <section id="experience" className="mb-24 scroll-mt-24 lg:mb-36">
-      <div className="sticky top-0 z-20 -mx-6 mb-4 bg-background/75 px-6 py-5 backdrop-blur lg:sr-only">
-        <h2 className="text-sm font-bold uppercase tracking-widest text-foreground">
-          {ui.expTitle}
-        </h2>
-      </div>
+    <section id="experience" className="mx-auto max-w-6xl scroll-mt-20 px-6 py-24">
+      <SectionHeader label={ui.expLabel} title={ui.expTitle} />
 
-      <ol className="group/list">
+      <ol>
         {careers.map((career) => (
-          <li key={career.company + career.period} className="mb-10">
-            <div className="group relative grid gap-1 rounded-lg transition-all sm:grid-cols-8 sm:gap-6 lg:p-4 lg:-mx-4 lg:hover:bg-card/50 lg:hover:shadow-inner lg:group-hover/list:opacity-60 lg:hover:!opacity-100">
-              <div className="mb-1 mt-1 text-xs font-semibold uppercase tracking-wide text-muted/80 sm:col-span-2">
-                {career.period}
-              </div>
-              <div className="sm:col-span-6">
-                <h3 className="font-medium text-foreground">
-                  {career.role}{" "}
-                  <span className="text-muted">·</span>{" "}
-                  <span className="transition-colors group-hover:text-accent">
-                    {career.company}
-                  </span>
-                </h3>
-                <ul className="mt-2 space-y-1">
-                  {career.descriptions.map((desc) => (
-                    <li key={desc} className="text-sm leading-relaxed">
-                      {desc}
+          <li
+            key={career.company + career.period}
+            className="group grid gap-2 border-b border-card-border/40 py-8 first:pt-0 sm:grid-cols-8 sm:gap-6"
+          >
+            <div className="font-mono text-xs uppercase tracking-wide text-muted/70 sm:col-span-2 sm:pt-1">
+              {career.period}
+            </div>
+            <div className="sm:col-span-6">
+              <h3 className="font-semibold text-foreground">
+                {career.role} <span className="text-muted/60">·</span>{" "}
+                <span className="transition-colors group-hover:text-accent">
+                  {career.company}
+                </span>
+              </h3>
+              <ul className="mt-2.5 space-y-1">
+                {career.descriptions.map((desc) => (
+                  <li key={desc} className="text-sm leading-relaxed">{desc}</li>
+                ))}
+              </ul>
+              {career.techStack && (
+                <ul className="mt-3.5 flex flex-wrap gap-1.5 font-mono">
+                  {career.techStack.map((tech) => (
+                    <li
+                      key={tech}
+                      className="rounded bg-accent/10 px-2 py-0.5 text-[11px] text-accent"
+                    >
+                      {tech}
                     </li>
                   ))}
                 </ul>
-                {career.techStack && (
-                  <ul className="mt-3 flex flex-wrap gap-1.5">
-                    {career.techStack.map((tech) => (
-                      <li
-                        key={tech}
-                        className="rounded-full bg-accent/10 px-3 py-1 text-xs font-medium text-accent"
-                      >
-                        {tech}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
+              )}
             </div>
           </li>
         ))}

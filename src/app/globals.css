@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0f172a;
-  --foreground: #e2e8f0;
-  --accent: #5eead4;
-  --accent-dim: #2dd4bf;
-  --card: #1e293b;
-  --card-border: #334155;
-  --muted: #94a3b8;
+  --background: #0c0a09;
+  --foreground: #e7e5e4;
+  --accent: #e8663d;
+  --accent-dim: #c2502e;
+  --card: #151210;
+  --card-border: #292524;
+  --muted: #a8a29e;
 }
 
 @theme inline {
@@ -34,48 +34,27 @@ html {
 
 ::selection {
   background: var(--accent);
-  color: #0f172a;
+  color: #0c0a09;
 }
 
-/* Aurora background blobs */
-@keyframes aurora-drift-1 {
+/* Warm glow drift */
+@keyframes glow-drift-1 {
   0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(120px, -80px) scale(1.15); }
-  66% { transform: translate(-60px, 90px) scale(0.95); }
+  50% { transform: translate(-80px, -60px) scale(1.15); }
 }
-@keyframes aurora-drift-2 {
+@keyframes glow-drift-2 {
   0%, 100% { transform: translate(0, 0) scale(1); }
-  40% { transform: translate(-140px, 60px) scale(1.1); }
-  70% { transform: translate(80px, -100px) scale(0.9); }
-}
-@keyframes aurora-drift-3 {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(100px, 120px) scale(1.2); }
+  50% { transform: translate(90px, 50px) scale(0.9); }
 }
 
-.aurora-blob {
+.glow-blob {
   position: absolute;
   border-radius: 9999px;
-  filter: blur(90px);
+  filter: blur(110px);
   will-change: transform;
 }
 
-/* Animated gradient text */
-@keyframes gradient-flow {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
-.gradient-text {
-  background: linear-gradient(90deg, #e2e8f0, #5eead4, #60a5fa, #e2e8f0);
-  background-size: 300% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: gradient-flow 8s ease-in-out infinite;
-}
-
-/* Typewriter cursor */
+/* Terminal cursor */
 @keyframes cursor-blink {
   0%, 45% { opacity: 1; }
   50%, 95% { opacity: 0; }
@@ -85,7 +64,7 @@ html {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .aurora-blob, .gradient-text, .type-cursor {
+  .glow-blob, .type-cursor {
     animation: none;
   }
 }

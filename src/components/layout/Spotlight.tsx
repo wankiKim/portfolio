@@ -15,7 +15,7 @@ export default function Spotlight() {
     <div
       className="pointer-events-none fixed inset-0 z-30 hidden transition duration-300 lg:block"
       style={{
-        background: `radial-gradient(600px at ${pos.x}px ${pos.y}px, rgba(45, 212, 191, 0.05), transparent 80%)`,
+        background: `radial-gradient(600px at ${pos.x}px ${pos.y}px, rgba(232, 102, 61, 0.045), transparent 80%)`,
       }}
     />
   );

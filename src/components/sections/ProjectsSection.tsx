@@ -1,63 +1,98 @@
 "use client";
 
-import { ArrowUpRight, Lock, Star } from "lucide-react";
+import { ArrowUpRight, Lock } from "lucide-react";
 import { useLang } from "@/context/LanguageContext";
 import { getProjects, Project } from "@/data/projects";
 import { t } from "@/data/i18n";
+import SectionHeader from "@/components/ui/SectionHeader";
 
-function ProjectRow({ project, showMetrics }: { project: Project; showMetrics?: boolean }) {
+function WindowCard({ project }: { project: Project }) {
   const Wrapper = project.url ? "a" : "div";
   const wrapperProps = project.url
     ? { href: project.url, target: "_blank", rel: "noopener noreferrer" }
     : {};
 
   return (
-    <li className="mb-8">
-      <Wrapper
-        {...wrapperProps}
-        className="group relative block rounded-lg transition-all lg:-mx-4 lg:p-4 lg:hover:bg-card/50 lg:hover:shadow-inner lg:group-hover/list:opacity-60 lg:hover:!opacity-100"
-      >
-        <h3 className="flex items-baseline gap-1.5 font-medium text-foreground">
-          <span className="transition-colors group-hover:text-accent">
-            {project.name}
-          </span>
+    <Wrapper
+      {...wrapperProps}
+      className="group flex flex-col rounded-lg border border-card-border bg-card/60 transition-all hover:-translate-y-1 hover:border-accent/40 hover:shadow-xl hover:shadow-accent/5"
+    >
+      <div className="flex items-center gap-1.5 border-b border-card-border px-4 py-2.5">
+        <span className="h-2.5 w-2.5 rounded-full bg-card-border" />
+        <span className="h-2.5 w-2.5 rounded-full bg-card-border" />
+        <span className="h-2.5 w-2.5 rounded-full bg-accent/70" />
+        <span className="ml-2 truncate font-mono text-[10px] uppercase tracking-widest text-muted/70">
+          {project.company ?? "personal"}
+        </span>
+        <span className="ml-auto">
           {project.url ? (
             <ArrowUpRight
-              size={14}
-              className="shrink-0 translate-y-0.5 text-muted transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent"
+              size={13}
+              className="text-muted transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent"
             />
           ) : (
-            <Lock size={12} className="shrink-0 text-muted/60" />
+            <Lock size={11} className="text-muted/50" />
           )}
-        </h3>
-        {project.company && (
-          <p className="mt-0.5 text-xs text-accent/80">{project.company}</p>
-        )}
-        <p className="mt-2 text-sm leading-relaxed">{project.description}</p>
+        </span>
+      </div>
 
-        {showMetrics && project.metrics && (
-          <ul className="mt-3 space-y-1">
+      <div className="flex flex-1 flex-col p-5">
+        <h3 className="font-semibold text-foreground transition-colors group-hover:text-accent">
+          {project.name}
+        </h3>
+        <p className="mt-2 flex-1 text-sm leading-relaxed">{project.description}</p>
+
+        {project.metrics && (
+          <ul className="mt-4 space-y-1 border-l border-accent/30 pl-3">
             {project.metrics.map((m) => (
-              <li key={m} className="flex items-start gap-2 text-xs">
-                <Star size={10} className="mt-1 shrink-0 text-accent" />
-                <span>{m}</span>
-              </li>
+              <li key={m} className="text-xs leading-relaxed">{m}</li>
             ))}
           </ul>
         )}
 
-        <ul className="mt-3 flex flex-wrap gap-1.5">
+        <ul className="mt-4 flex flex-wrap gap-1.5 font-mono">
           {project.techStack.map((tech) => (
             <li
               key={tech}
-              className="rounded-full bg-accent/10 px-3 py-1 text-xs font-medium text-accent"
+              className="rounded bg-accent/10 px-2 py-0.5 text-[11px] text-accent"
             >
               {tech}
             </li>
           ))}
         </ul>
-      </Wrapper>
-    </li>
+      </div>
+    </Wrapper>
+  );
+}
+
+function CompactCard({ project }: { project: Project }) {
+  const Wrapper = project.url ? "a" : "div";
+  const wrapperProps = project.url
+    ? { href: project.url, target: "_blank", rel: "noopener noreferrer" }
+    : {};
+
+  return (
+    <Wrapper
+      {...wrapperProps}
+      className="group flex flex-col rounded-lg border border-card-border/60 bg-card/40 p-5 transition-all hover:-translate-y-0.5 hover:border-accent/30"
+    >
+      <h3 className="flex items-baseline gap-1.5 text-sm font-semibold text-foreground transition-colors group-hover:text-accent">
+        {project.name}
+        {project.url ? (
+          <ArrowUpRight size={12} className="shrink-0 text-muted group-hover:text-accent" />
+        ) : (
+          <Lock size={10} className="shrink-0 text-muted/50" />
+        )}
+      </h3>
+      <p className="mt-2 flex-1 text-xs leading-relaxed">{project.description}</p>
+      <ul className="mt-3 flex flex-wrap gap-1.5 font-mono">
+        {project.techStack.slice(0, 5).map((tech) => (
+          <li key={tech} className="rounded bg-card-border/40 px-2 py-0.5 text-[10px] text-muted">
+            {tech}
+          </li>
+        ))}
+      </ul>
+    </Wrapper>
   );
 }
 
@@ -71,41 +106,32 @@ export default function ProjectsSection() {
   const side = projects.filter((p) => p.category === "side");
 
   return (
-    <section id="projects" className="mb-24 scroll-mt-24 lg:mb-36">
-      <div className="sticky top-0 z-20 -mx-6 mb-4 bg-background/75 px-6 py-5 backdrop-blur lg:sr-only">
-        <h2 className="text-sm font-bold uppercase tracking-widest text-foreground">
-          {ui.projTitle}
-        </h2>
+    <section id="projects" className="mx-auto max-w-6xl scroll-mt-20 px-6 py-24">
+      <SectionHeader label={ui.projLabel} title={ui.projTitle} />
+
+      <div className="grid gap-5 md:grid-cols-2">
+        {featured.map((p) => (
+          <WindowCard key={p.name} project={p} />
+        ))}
       </div>
 
-      <p className="mb-8 text-sm">{ui.projSub}</p>
+      <div className="mt-20">
+        <SectionHeader label={ui.projMoreLabel} title={ui.projMoreTitle} />
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {main.map((p) => (
+            <CompactCard key={p.name} project={p} />
+          ))}
+        </div>
 
-      <h3 className="mb-4 text-xs font-bold uppercase tracking-widest text-accent">
-        {ui.projFeatured}
-      </h3>
-      <ol className="group/list mb-12">
-        {featured.map((p) => (
-          <ProjectRow key={p.name} project={p} showMetrics />
-        ))}
-      </ol>
-
-      <h3 className="mb-4 text-xs font-bold uppercase tracking-widest text-foreground">
-        {ui.projMain}
-      </h3>
-      <ol className="group/list mb-12">
-        {main.map((p) => (
-          <ProjectRow key={p.name} project={p} />
-        ))}
-      </ol>
-
-      <h3 className="mb-4 text-xs font-bold uppercase tracking-widest text-foreground">
-        {ui.projSide}
-      </h3>
-      <ol className="group/list">
-        {side.map((p) => (
-          <ProjectRow key={p.name} project={p} />
-        ))}
-      </ol>
+        <h3 className="mb-4 mt-12 font-mono text-xs uppercase tracking-[0.2em] text-muted/70">
+          {ui.projSideTitle}
+        </h3>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {side.map((p) => (
+            <CompactCard key={p.name} project={p} />
+          ))}
+        </div>
+      </div>
     </section>
   );
 }
