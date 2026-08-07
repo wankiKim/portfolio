@@ -52,7 +52,7 @@ const data: Record<Locale, AIWorkflowData> = {
         metrics: ["Go 13개 서비스 + Rust 매칭 엔진 2개, 48,000+ LOC", "12개 마켓메이킹 봇 동시 운영, 초당 100+ 주문", "선물 청산·펀딩비·TP/SL 엔진까지 구현", "거래·관리자·대리점 3개 웹 + 백엔드를 EC2 1대에 컨테이너 21개로 라이브 운영"],
         description: "5년간의 거래소 개발 경험 위에, 레거시 Java/Spring 거래소를 Claude Code와 함께 Go 13개 서비스 + Rust 매칭 엔진 2개로 재플랫폼. 가격-시간 우선순위 오더북과 선물 파생상품 엔진을 구현하고, Terraform 인프라 자동화까지 1인 완성해 지금도 라이브로 돌리고 있습니다.",
       },
-      { title: "Zelotek — 레거시 PHP를 MSA로", scale: "15개 마이크로서비스 SaaS", duration: "Solo", solo: true, techStack: ["Java 17", "Spring Boot", "Eureka", "RabbitMQ", "Terraform"], description: "레거시 PHP 모놀리스(1,500파일)를 15개 Spring Boot 마이크로서비스로 재구축해 실운영까지 완주. Saga 분산 트랜잭션, 결제 멱등성, 업종 Plugin Architecture, 키오스크 접근성 런타임까지 — Java 소스 1,432개를 Claude Code와 함께." },
+      { title: "Zelotek — 레거시 PHP를 MSA로", scale: "15개 마이크로서비스 SaaS", duration: "Solo", solo: true, techStack: ["Java 17", "Spring Boot", "Eureka", "RabbitMQ", "Terraform"], description: "레거시 PHP 모놀리스(1,500파일)를 15개 Spring Boot 마이크로서비스로 재구축해 실운영까지 완주. Saga 분산 트랜잭션, 결제 중복 방지, 업종 Plugin Architecture, 키오스크 접근성 런타임까지 — Java 소스 1,432개를 Claude Code와 함께." },
       { title: "CS 응대 AI Agent 시스템", scale: "멀티채널 자동화 플랫폼", duration: "2주", solo: true, techStack: ["OpenAI", "Slack", "Notion API", "Node.js"], description: "해피톡 · 비즈톡 · OpenAI · Notion · Slack 연동 CS 자동 응대 시스템. 아키텍처 설계 → DB 스키마 → 시나리오 엔진 → API 서버까지 전 과정을 Claude Code와 협업으로 단독 개발." },
       { title: "이 포트폴리오 사이트", scale: "풀스택 + 인프라", duration: "1일", solo: true, techStack: ["Next.js 15", "Terraform", "AWS", "GitHub Actions"], description: "이 사이트 자체가 증거입니다. Next.js 15 앱 개발 → Terraform 인프라(S3 + CloudFront + Route53 + ACM) → GitHub Actions CI/CD → 커스텀 도메인 연결까지 하루 만에 완성." },
     ],

@@ -40,7 +40,7 @@ const projectsKo: Project[] = [
       "스터디카페·세차·골프 등 13개 업종 무인매장을 위한 키오스크 + 프랜차이즈 원격관제 SaaS. 레거시 PHP 모놀리스(1,500파일)를 15개 Spring Boot 마이크로서비스로 전면 재구축해 실운영까지 완주. 업종별 if-else 분기를 Plugin Architecture로 대체해 신규 업종 추가 비용을 플러그인 1개 구현으로 줄였습니다.",
     metrics: [
       "Java 소스 1,432개 · 컨트롤러 139개 · Flyway 마이그레이션 457개",
-      "Saga 분산 트랜잭션 + 결제 멱등성 처리",
+      "Saga 분산 트랜잭션 + 결제가 두 번 처리되지 않게 막는 장치",
       "카드디스펜서·현금기·RF리더 등 하드웨어 드라이버 계층 직접 구현",
       "무인정보단말기 접근성(배리어프리) 런타임 자체 구현",
     ],
@@ -83,11 +83,11 @@ const projectsKo: Project[] = [
     name: "CMS-Plug — 결제·정산 플랫폼",
     category: "featured",
     description:
-      "거래처(Vendor)별 회원·지갑·수수료를 관리하는 멀티테넌트 입출금 정산 플랫폼. 복식 원장 + 낙관적 잠금 + 멱등성 필터로 금융 정합성을 보장하고, 규칙 엔진 기반 이상거래탐지(FDS)와 HMAC 웹훅 Partner API를 제공합니다. 20라운드 QA로 레이스 컨디션·N+1·수수료 반올림 오차를 하나씩 잡아낸 개선 서사가 커밋 로그에 그대로 남아 있습니다.",
+      "거래처(Vendor)별 회원·지갑·수수료를 관리하는 멀티테넌트 입출금 정산 플랫폼. 복식 원장, 충돌 시에만 되돌리는 낙관적 잠금, 같은 요청이 두 번 와도 한 번만 처리하는 필터로 금융 정합성을 보장하고, 규칙 엔진 기반 이상거래탐지(FDS)와 HMAC 웹훅 Partner API를 제공합니다. 20라운드 QA로 레이스 컨디션·N+1·수수료 반올림 오차를 하나씩 잡아낸 개선 서사가 커밋 로그에 그대로 남아 있습니다.",
     metrics: [
       "복식 원장(ledger) + 3계층 수수료 정산",
       "FDS 규칙 엔진 + 회원·계좌·IP 블랙리스트",
-      "Partner API — API Key 해시 저장, IP 화이트리스트, 멱등성 필터",
+      "Partner API — API Key 해시 저장, 허용 IP 목록, 중복 요청 차단 필터",
       "Aurora PostgreSQL Serverless + Blue-Green 배포",
     ],
     techStack: ["Java 17", "Spring Boot 3", "QueryDSL", "Next.js 16", "Aurora PostgreSQL", "Redis", "Terraform"],

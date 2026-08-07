@@ -8,6 +8,8 @@ export interface WritingItem {
 }
 
 const BLOG = "https://wankikim.github.io";
+// 영문 글은 /en/ 아래에 따로 있다. 영문 목록에서 한글 글로 보내지 않도록 분리.
+const BLOG_EN = `${BLOG}/en`;
 
 const writingKo: WritingItem[] = [
   {
@@ -52,37 +54,37 @@ const writingEn: WritingItem[] = [
   {
     title: "Building an Exchange with Claude Code (4) — Putting the Exchange I Took Down Back on One EC2 Box",
     date: "2026.08",
-    url: `${BLOG}/project/exchange-single-node-redeploy/`,
+    url: `${BLOG_EN}/project/exchange-single-node-redeploy/`,
     tag: "AWS · Infrastructure",
   },
   {
     title: "Building an Exchange with Claude Code (3) — Ditching Java for Go+Rust",
     date: "2026.08",
-    url: `${BLOG}/project/exchange-replatform-go-rust/`,
+    url: `${BLOG_EN}/project/exchange-replatform-go-rust/`,
     tag: "Go · Rust · MSA",
   },
   {
     title: "Farewell to a 14,000-line views.py — Migrating a Django Monolith to Java 21 MSA",
     date: "2026.08",
-    url: `${BLOG}/project/django-to-java-msa-strangler/`,
+    url: `${BLOG_EN}/project/django-to-java-msa-strangler/`,
     tag: "Legacy Migration",
   },
   {
     title: "Rebuilding Coffee-Machine Firmware from Hex — The Clock Wasn't 16MHz",
     date: "2026.08",
-    url: `${BLOG}/project/coffee-machine-firmware-reverse-engineering/`,
+    url: `${BLOG_EN}/project/coffee-machine-firmware-reverse-engineering/`,
     tag: "Embedded",
   },
   {
     title: "One Annotation, a Full ERP Screen — Extending Open-Source Erupt into Our Platform",
     date: "2026.08",
-    url: `${BLOG}/project/hunikflow-lowcode-platform/`,
+    url: `${BLOG_EN}/project/hunikflow-lowcode-platform/`,
     tag: "Platform Design",
   },
   {
     title: "Writing Code with AI — Lessons from 15 Projects",
     date: "2026.02",
-    url: `${BLOG}/essay/what-i-learned-from-15-projects/`,
+    url: `${BLOG_EN}/essay/what-i-learned-from-15-projects/`,
     tag: "Essay",
   },
 ];
