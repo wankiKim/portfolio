@@ -11,6 +11,12 @@ const BLOG = "https://wankikim.github.io";
 
 const writingKo: WritingItem[] = [
   {
+    title: "Claude Code로 거래소 만들기(4) — 내렸던 거래소를 EC2 한 대에 다시 올렸다",
+    date: "2026.08",
+    url: `${BLOG}/project/exchange-single-node-redeploy/`,
+    tag: "AWS · 인프라",
+  },
+  {
     title: "Claude Code로 거래소 만들기(3) — Java를 버리고 Go+Rust로 갈아엎은 이야기",
     date: "2026.08",
     url: `${BLOG}/project/exchange-replatform-go-rust/`,
@@ -43,6 +49,12 @@ const writingKo: WritingItem[] = [
 ];
 
 const writingEn: WritingItem[] = [
+  {
+    title: "Building an Exchange with Claude Code (4) — Putting the Exchange I Took Down Back on One EC2 Box",
+    date: "2026.08",
+    url: `${BLOG}/project/exchange-single-node-redeploy/`,
+    tag: "AWS · Infrastructure",
+  },
   {
     title: "Building an Exchange with Claude Code (3) — Ditching Java for Go+Rust",
     date: "2026.08",

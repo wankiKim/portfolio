@@ -52,15 +52,17 @@ const projectsKo: Project[] = [
     image: "/images/projects/kocoinex.jpg",
     category: "featured",
     description:
-      "현물·선물·OTC를 갖춘 거래소를 레거시 Java/Spring에서 Go 13개 서비스 + Rust 매칭 엔진 2개로 재플랫폼. 가격-시간 우선순위 오더북, 선물 청산·펀딩비·TP/SL 엔진, Kafka 체결 파이프라인, STOMP 실시간 시세를 구현하고 Terraform으로 AWS ECS Fargate에 배포해 라이브 데모 운영으로 검증까지 마쳤습니다.",
+      "현물·선물·OTC를 갖춘 거래소를 레거시 Java/Spring에서 Go 13개 서비스 + Rust 매칭 엔진 2개로 재플랫폼. 가격-시간 우선순위 오더북, 선물 청산·펀딩비·TP/SL 엔진, Kafka 체결 파이프라인, 실시간 시세 푸시를 구현했습니다. 지금은 거래 화면·관리자 백오피스·대리점 포털 3개 웹과 백엔드 전체를 Graviton EC2 한 대에 컨테이너 21개로 묶어 라이브로 돌리고 있습니다.",
     metrics: [
       "Go + Rust 48,000+ LOC · MySQL 테이블 102개",
       "Rust 오더북 매칭 엔진 — BTreeMap 가격 레벨 + FIFO, 벤치마크 포함",
       "매칭 엔진 싱글톤을 코드가 아닌 인프라(Terraform)로 강제",
+      "ECS Fargate 구성을 EC2 1대로 통합 — 관리형 DB·Kafka 없이 컨테이너로 운영",
       "12개 마켓메이킹 봇 동시 운영, 초당 100+ 주문 처리",
     ],
-    techStack: ["Go", "Rust", "Kafka", "Next.js 16", "MySQL", "MongoDB", "Redis", "Terraform"],
+    techStack: ["Go", "Rust", "Kafka", "Next.js 16", "MySQL", "MongoDB", "Redis", "Docker", "Terraform"],
     visibility: "private",
+    url: "https://exchange.agentmichael.me",
   },
   {
     name: "HunikFlow — 로우코드 엔터프라이즈 플랫폼",
@@ -223,15 +225,17 @@ const projectsEn: Project[] = [
     image: "/images/projects/kocoinex.jpg",
     category: "featured",
     description:
-      "Re-platformed a full exchange (spot, futures, OTC) from legacy Java/Spring to 13 Go services + 2 Rust matching engines. Price-time priority orderbook, futures liquidation / funding-rate / TP-SL engines, Kafka execution pipeline, STOMP real-time market data — deployed to AWS ECS Fargate via Terraform and validated through a live demo run.",
+      "Re-platformed a full exchange (spot, futures, OTC) from legacy Java/Spring to 13 Go services + 2 Rust matching engines. Price-time priority orderbook, futures liquidation / funding-rate / TP-SL engines, Kafka execution pipeline, real-time market data push. It now runs live — the trading UI, admin back office, and agent portal plus the entire backend packed into 21 containers on a single Graviton EC2 box.",
     metrics: [
       "48,000+ LOC of Go + Rust · 102 MySQL tables",
       "Rust orderbook engine — BTreeMap price levels + FIFO, with benchmarks",
       "Matching-engine singleton enforced by infrastructure (Terraform), not code",
+      "ECS Fargate layout consolidated onto one EC2 — no managed DB or Kafka, all containers",
       "12 market-making bots, 100+ orders/sec",
     ],
-    techStack: ["Go", "Rust", "Kafka", "Next.js 16", "MySQL", "MongoDB", "Redis", "Terraform"],
+    techStack: ["Go", "Rust", "Kafka", "Next.js 16", "MySQL", "MongoDB", "Redis", "Docker", "Terraform"],
     visibility: "private",
+    url: "https://exchange.agentmichael.me",
   },
   {
     name: "HunikFlow — Low-Code Enterprise Platform",
