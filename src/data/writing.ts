@@ -13,6 +13,12 @@ const BLOG_EN = `${BLOG}/en`;
 
 const writingKo: WritingItem[] = [
   {
+    title: "Claude Code로 거래소 만들기(5) — 조용히 돈이 새는 곳들",
+    date: "2026.08",
+    url: `${BLOG}/project/exchange-consistency-deep-dive/`,
+    tag: "정합성 · 분산시스템",
+  },
+  {
     title: "Claude Code로 거래소 만들기(4) — 내렸던 거래소를 EC2 한 대에 다시 올렸다",
     date: "2026.08",
     url: `${BLOG}/project/exchange-single-node-redeploy/`,
@@ -51,6 +57,12 @@ const writingKo: WritingItem[] = [
 ];
 
 const writingEn: WritingItem[] = [
+  {
+    title: "Building an Exchange with Claude Code (5) — Where the Money Quietly Leaks",
+    date: "2026.08",
+    url: `${BLOG_EN}/project/exchange-consistency-deep-dive/`,
+    tag: "Consistency · Distributed Systems",
+  },
   {
     title: "Building an Exchange with Claude Code (4) — Putting the Exchange I Took Down Back on One EC2 Box",
     date: "2026.08",

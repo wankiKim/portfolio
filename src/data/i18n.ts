@@ -4,6 +4,7 @@ const ui = {
   ko: {
     // Nav
     navProjects: "프로젝트",
+    navCase: "케이스 스터디",
     navExperience: "경력",
     navAbout: "소개",
     navWriting: "블로그",
@@ -24,6 +25,10 @@ const ui = {
     projMoreLabel: "MORE PROJECTS",
     projMoreTitle: "그 외에 만든 것들.",
     projSideTitle: "사이드 프로젝트",
+    // Case study
+    caseLabel: "CASE STUDY",
+    caseTitle: "가장 깊게 판 하나.",
+    caseFullscreen: "전체 화면으로 보기",
     // About (What I do)
     aboutLabel: "WHAT I DO",
     aboutTitle: "한 사람이, 전 레이어를.",
@@ -51,6 +56,7 @@ const ui = {
   },
   en: {
     navProjects: "Projects",
+    navCase: "Case Study",
     navExperience: "Work",
     navAbout: "About",
     navWriting: "Writing",
@@ -69,6 +75,9 @@ const ui = {
     projMoreLabel: "MORE PROJECTS",
     projMoreTitle: "More things I've built.",
     projSideTitle: "Side Projects",
+    caseLabel: "CASE STUDY",
+    caseTitle: "The one I dug deepest into.",
+    caseFullscreen: "Open full screen",
     aboutLabel: "WHAT I DO",
     aboutTitle: "One person, every layer.",
     expLabel: "WORK",

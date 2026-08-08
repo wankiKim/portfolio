@@ -11,8 +11,9 @@ export default function TopNav() {
 
   const items = [
     { id: "projects", num: "01", label: ui.navProjects },
-    { id: "experience", num: "02", label: ui.navExperience },
-    { id: "writing", num: "03", label: ui.navWriting },
+    { id: "case-study", num: "02", label: ui.navCase },
+    { id: "experience", num: "03", label: ui.navExperience },
+    { id: "writing", num: "04", label: ui.navWriting },
   ];
 
   return (

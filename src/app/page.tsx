@@ -4,6 +4,7 @@ import TopNav from "@/components/layout/TopNav";
 import Reveal from "@/components/ui/Reveal";
 import HeroSection from "@/components/sections/HeroSection";
 import ProjectsSection from "@/components/sections/ProjectsSection";
+import CaseStudySection from "@/components/sections/CaseStudySection";
 import AboutSection from "@/components/sections/AboutSection";
 import ExperienceSection from "@/components/sections/ExperienceSection";
 import AIWorkflowSection from "@/components/sections/AIWorkflowSection";
@@ -20,6 +21,9 @@ export default function Home() {
         <HeroSection />
         <Reveal>
           <ProjectsSection />
+        </Reveal>
+        <Reveal>
+          <CaseStudySection />
         </Reveal>
         <Reveal>
           <AboutSection />
